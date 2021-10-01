@@ -56,8 +56,7 @@ export default connect(Theme);
 const globalStyles = css`
   body {
     margin: 0;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-      "Droid Sans", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-family: 'Alegreya Sans', 'B612', 'Dosis', 'sans-serif';
   }
   a,
   a:visited {

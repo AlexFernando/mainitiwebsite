@@ -2,50 +2,42 @@ const settings = {
   "name": "mainiti-website",
   "state": {
     "frontity": {
-      "url": "https://test.frontity.org",
+      "url": "https://mainitiwp.wildfreewalkingtours.com/",
       "title": "Test Frontity Blog",
       "description": "WordPress installation for Frontity development"
     }
   },
   "packages": [
     {
-      "name": "@frontity/mars-theme",
+      "name": "mainiti",
+
       "state": {
         "theme": {
           "menu": [
-            [
-              "Home",
-              "/"
-            ],
-            [
-              "Nature",
-              "/category/nature/"
-            ],
-            [
-              "Travel",
-              "/category/travel/"
-            ],
-            [
-              "Japan",
-              "/tag/japan/"
-            ],
-            [
-              "About Us",
-              "/about-us/"
-            ]
+            ["About", "/about/"],
+            ["Retreats", "/retreats/"],
+            ["Ayahuasca", "/ayahuasca/"],
+            ["Plant Dieta", "/plantdieta/"],
+            ["Preparation", "/preparation/"],            
+            ["Testimonials", "/testimonials/"],
+            ["FAQ's", "faqs"],
+            ["Contact", "/contact/"]
           ],
           "featured": {
-            "showOnList": false,
-            "showOnPost": false
-          }
+            "showOnList": true,
+            "showOnPost": true
+          },
+          // Whether to auto-fetch links on a page. Values can be "no" | "all" | "in-view" | "hover"
+          autoPrefetch: "hover"
         }
       }
     },
+
     {
       "name": "@frontity/wp-source",
       "state": {
         "source": {
-          "url": "https://test.frontity.org"
+          "api": "https://mainitiwp.wildfreewalkingtours.com/wp-json/",
         }
       }
     },

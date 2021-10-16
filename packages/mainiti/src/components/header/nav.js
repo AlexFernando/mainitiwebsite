@@ -41,10 +41,12 @@ const NavContainer = styled.nav`
 `;
 
 const NavItem = styled.div`
+
   padding: 0;
   margin: 0 16px;
   color: var(--brand);
-  font-size: 0.9em;
+  font-size: 1rem;
+  text-transform: uppercase;
   box-sizing: border-box;
   flex-shrink: 0;
 
@@ -53,6 +55,12 @@ const NavItem = styled.div`
     line-height: 2em;
     color:var(--black);
     transition: all 0.3s ease;
+    text-decoration: none;
+
+    &:hover {
+      color: var(--brand);
+    }
+
     /* Use for semantic approach to style the current link */
     &[aria-current="page"] {
       //color:var(--brand);
@@ -60,14 +68,8 @@ const NavItem = styled.div`
       font-weight  : 900;
       text-decoration: underline;
     }
-
-    &:hover {
-      color: var(--brand);
-    }
-    }
-    
   }
-
+  
   &:first-of-type {
     margin-left: 0;
   }

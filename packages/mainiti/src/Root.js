@@ -8,7 +8,11 @@ import Retreats from './components/Retreat';
 import Preparation from './components/Preparation';
 import About from './components/About';
 import Ayahuasca from './components/Ayahuasca';
-import Dieta from './components/dieta'
+import Dieta from './components/dieta';
+import ContactRegisterForm from './components/ContactRegisterForm';
+
+import ContactFooter from './components/ContactFooter';
+import TestimonialPage from './components/TestimonialPage';
 
 const Root = ({state, actions}) => {
 
@@ -32,7 +36,7 @@ const Root = ({state, actions}) => {
                     body {
                         margin: 0px !important;
                         color:var(--bodycolor);
-                        font-family: 'B612';
+                        font-family: 'Alegreya Sans', 'B612', sans-serif;
                         font-feature-settings: "kern";
                         -webkit-font-smoothing: antialiased;
                         min-height: -webkit-fill-available;
@@ -41,11 +45,11 @@ const Root = ({state, actions}) => {
                         height: -webkit-fill-available;
                     }
 
-
-                    /*                              * {
+/*                 
+                    * {
                         border: 1px solid #f00 !important;
-                    }   */
-                     
+                    }   
+                       */
                 `}
             />
 
@@ -70,7 +74,10 @@ const Root = ({state, actions}) => {
         {state.router.link === "/about/" && <About />}
         {state.router.link === "/ayahuasca/" && <Ayahuasca />}
         {state.router.link === "/plantdieta/" && <Dieta />}
-            
+        {state.router.link === "/testimonials/" && <TestimonialPage />}
+        {state.router.link === "/contact/" && <ContactRegisterForm />}
+                
+        <ContactFooter />
         <Footer title={"Mainiti Healing Center"}/>   
       </>
     );

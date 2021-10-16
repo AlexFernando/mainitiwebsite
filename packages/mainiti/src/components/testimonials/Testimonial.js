@@ -3,7 +3,6 @@ import { connect, styled, css, Global } from "frontity";
 import CarouselAllStyles from "react-responsive-carousel/lib/styles/carousel.css"; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
 import Image from "@frontity/components/image";
-import TestimonialImage from '../../images/testimonial.png'
 import Loading from '../../components/Loading'
 
 const Testimonial = ({state, actions}) => {
@@ -37,7 +36,7 @@ const Testimonial = ({state, actions}) => {
     
         <div>
 
-            <ImageStyled src={pageHome.acf.testimonial_one.image_testimonial.sizes.thumbnail} />
+{/*             <ImageStyled src={pageHome.acf.testimonial_one.image_testimonial.sizes.thumbnail} /> */}
             <div className="myCarousel">
                 <h3>{pageHome.acf.testimonial_one.testimonial_name}</h3>
                 <h4>{pageHome.acf.testimonial_one.testimonial_year}</h4>
@@ -48,7 +47,7 @@ const Testimonial = ({state, actions}) => {
         </div>
 
         <div>
-            <ImageStyled src={pageHome.acf.testimonial_two.image_testimonial.sizes.thumbnail} />
+{/*             <ImageStyled src={pageHome.acf.testimonial_two.image_testimonial.sizes.thumbnail} /> */}
             <div className="myCarousel">
                 <h3>{pageHome.acf.testimonial_two.testimonial_name}</h3>
                 <h4>{pageHome.acf.testimonial_two.testimonial_year}</h4>
@@ -59,7 +58,7 @@ const Testimonial = ({state, actions}) => {
         </div>
 
         <div>
-            <ImageStyled src={pageHome.acf.testimonial_three.image_testimonial.sizes.thumbnail} />
+            {/* <ImageStyled src={pageHome.acf.testimonial_three.image_testimonial.sizes.thumbnail} /> */}
             <div className="myCarousel">
                 <h3>{pageHome.acf.testimonial_three.testimonial_name}</h3>
                 <h4>{pageHome.acf.testimonial_three.testimonial_year}</h4>

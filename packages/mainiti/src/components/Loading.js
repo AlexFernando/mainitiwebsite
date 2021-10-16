@@ -22,7 +22,7 @@ const Loading = () => (
 export default Loading;
 
 const bar = index => css`
-  background-color: #203492;
+  background-color: #0c884a;
   width: 4px;
   height: 24px;
   margin: 3px;
@@ -41,11 +41,11 @@ const Container = styled.div`
   align-items: center;
 
   & > * {
-    margin: 25rem 0 15rem 0;
+    margin: 30rem 0 30rem 0;
   }
 
   @media(max-width: 768px) {
-    margin: 0;
-    padding: 0;
+    margin: 0rem;
+    padding: 0rem;
   }
 `;

@@ -6,6 +6,10 @@ import Loading from './Loading';
 import dataAccordion from './data/dataAccordion';
 import SingleQuestion from './faqs/Question';
 
+// import about styles
+import {MarginPaddingContainer, HeaderContainer, Title, Separator} from './About';
+import { MainParagraph } from "./Ayahuasca";
+
 const Faqs = ({state, actions, libraries}) => {
 
     useEffect(() => {
@@ -19,7 +23,6 @@ const Faqs = ({state, actions, libraries}) => {
     /**Start Question app */
     
     let objFaqs = pageFaqs.acf;
-
 
     let dataFaqsFinal = []
 
@@ -42,20 +45,33 @@ const Faqs = ({state, actions, libraries}) => {
 
     const [questions, setQuestions] = useState(dataFaqsFinal);
 
-    console.log("elem 1: ", questions[0])
-
     return(
 
-        <main>
-            <Container>
-                <h3>questions and answers about login</h3>
-                <section>
-                    {questions.map( (question ) => (
-                        <SingleQuestion question = {question} />
-                    ))}
-                </section> 
-            </Container>
-        </main>
+        <>
+        {typeof pageFaqs === "undefined" ? <Loading /> : 
+        
+            <MarginPaddingContainer>
+                <HeaderContainer>
+                    <Title>FAQS</Title>
+                    <Separator></Separator>
+                </HeaderContainer>
+                <main>
+                    <Container>
+                        <h3>Questions and Answers </h3>
+                        <section>
+                            {questions.map( (question ) => (
+                                <SingleQuestion question = {question} />
+                            ))}
+                        </section> 
+                    </Container>
+
+                </main>
+                
+            </MarginPaddingContainer>
+
+        }    
+        
+        </>
     )
 };
 

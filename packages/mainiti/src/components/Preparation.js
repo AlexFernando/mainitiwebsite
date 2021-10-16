@@ -8,6 +8,19 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDotCircle, faMapMarkerAlt, faCheck, faTimes } from '@fortawesome/free-solid-svg-icons'
 import { faSeedling, faRainbow, faCampground, faHeart} from '@fortawesome/free-solid-svg-icons';
 
+// react tab tab
+import {Tabs, TabList, Tab, PanelList, Panel} from 'react-tabtab';
+import * as customStyle from 'react-tabtab/lib/themes/bootstrap/index';
+
+import {RowOneContainer, BoxContainer} from './dieta';
+
+//import ayahuasca styles 
+import {MainParagraph, CardDescriptionContainer, ImageDescriptionContainer} from './Ayahuasca';
+
+// import about styles
+import {MarginPaddingContainer, HeaderContainer, Title, Separator} from './About';
+
+
 const Preparation = ({ state, actions, libraries }) => {
 
     //     
@@ -38,178 +51,182 @@ const Preparation = ({ state, actions, libraries }) => {
     return(
         <>
         {typeof pagePreparation === "undefined" ? <Loading /> : 
-        <>
-            <MarginTop />
-            
-            <AboutContainer>
+        
+        <MarginPaddingContainer>
+                
+                <HeaderContainer>
+                    <Title>Preparation</Title>
+                    <Separator></Separator>
+                </HeaderContainer>
 
-                <h1>Este deberia ser un titulo para agregar</h1>
-
-                <ButtonContainer>
-                    <ButtonStyles onClick={(e) => setActions(0, e)}>Food</ButtonStyles>                
-                    <ButtonStyles onClick={(e) => setActions(1, e)}>Substances</ButtonStyles>
-                    <ButtonStyles onClick={(e) => setActions(2, e)}>Activities</ButtonStyles>             
-                    <ButtonStyles onClick={(e) => setActions(3, e)}>What to expect at the center?</ButtonStyles>   
-                </ButtonContainer>
-
-                <div>
-                    {view === 0 ? 
-                        <>
-                        <CardContainer>
-                            {Object.keys(pagePreparation.acf.food_related).map( (item, index) => {
-                                return(
-                                    <CardText>
-                                        <p><span>{index+1}.- </span>{pagePreparation.acf.food_related[item]}</p>
-                                    </CardText>
-                                )
-                            })}
-                            
-                        </CardContainer>
-
-                        <FoodItems>
-                            <div>
-                                <h4>Forbbiden Food</h4>
-                                {
-                                    pagePreparation.acf.forbidden_food.split(",").map( elem => {
-                                        return(
-                                            <li><FontAwesomeIconTimes icon={faTimes} />{elem.trim()}</li>
-                                        
-                                        )
-                                    })
-                                }
-                            </div>
-
-                            <div>
-                                <h4>Allowed Food</h4>
-                                {
-                                    pagePreparation.acf.allowed_food.split(",").map( elem => {
-                                        return(
-                                            <li><FontAwesomeIconCheck icon={faCheck} />{elem.trim()}</li>
-                                        )
-                                    })
-                                }
-                            </div>
-
-                            <div>
-                                <p>{pagePreparation.acf.important_note_food}</p>
-                            </div>
-                        </FoodItems>
-
-
-
-                        </>
-                        
+                <Tabs customStyle={customStyle}>
+                    <TabList>
+                        <Tab>Food</Tab>
+                        <Tab>Substances</Tab>
+                        <Tab>Activities</Tab>
+                        <Tab>What to expect at the center?</Tab>
+                    </TabList>
                     
-                    : ''}
-                    {view === 1 ? 
-                        <>
-                            <CardContainer>
-                                {Object.keys(pagePreparation.acf.substances).map( (item, index) => {
+                    <PanelList>
+                        <Panel>
+                            <RowOneContainer>
+                                {Object.keys(pagePreparation.acf.food_related.cards).map( (item, index) => {
                                     return(
-                                        <CardText>
-                                            <p><span>{index+1}.- </span>{pagePreparation.acf.substances[item]}</p>
-                                        </CardText>
+                                        <BoxContainer>
+                                            <h2>{pagePreparation.acf.food_related.cards[item].text}</h2>
+
+                                            {
+                                                pagePreparation.acf.food_related.cards[item].paragraph.split("%").map(elem => {
+                                                    return(
+                                                        <p>{elem}</p>
+                                                    )
+                                                })
+                                            }
+
+                                            <img src="https://assets.codepen.io/2301174/icon-supervisor.svg" alt="" />
+                                        </BoxContainer>
                                     )
-                                })}    
-                            </CardContainer>
+                                })}
+                            </RowOneContainer>
+
+                            <AllowedForbbidenContainer>
+                                
+                                
+                                    <p>{pagePreparation.acf.important_note_food}</p>
+                                
+                                
+                                    <div>
+             
+                                        <ul>
+                                        <h3>Forbbiden Food</h3>
+                                        {
+                                            pagePreparation.acf.forbidden_food.split(",").map( elem => {
+                                                return(
+                                                    <li><FontAwesomeIconTimes icon={faTimes} />{elem.trim()}</li>
+                                                
+                                                )
+                                            })
+                                        }
+                                        </ul>
+
+                          
+                                        <ul>
+                                        <h3>Allowed Food</h3>
+                                            {
+                                                pagePreparation.acf.allowed_food.split(",").map( elem => {
+                                                    return(
+                                                        <li><FontAwesomeIconCheck icon={faCheck} />{elem.trim()}</li>
+                                                    )
+                                                })
+                                            }
+                                        </ul>
+                                    </div>
+                                
+                            </AllowedForbbidenContainer>
+                        </Panel>
+
+                        <Panel>
+                            <RowOneContainer>
+                                {Object.keys(pagePreparation.acf.substances.cards).map( (item, index) => {
+                                    return(
+                                        <BoxContainer>
+                                            <h2>{pagePreparation.acf.substances.cards[item].text}</h2>
+
+                                            {
+                                                pagePreparation.acf.substances.cards[item].paragraph.split("%").map(elem => {
+                                                    return(
+                                                        <p>{elem}</p>
+                                                    )
+                                                })
+                                            }
+
+                                            <img src="https://assets.codepen.io/2301174/icon-supervisor.svg" alt="" />
+                                        </BoxContainer>
+                                    )
+                                })}
+                            </RowOneContainer>
 
 
-                            <FoodItems>
+                            <AllowedForbbidenContainer>
+                                
+                                <p>{pagePreparation.acf.important_note_substances}</p>
+                            
                                 <div>
-                                    <h4>Forbbiden Substances</h4>
+                   
+
+                                    <ul>
+                                        <h3>Forbbiden Substances</h3>
+                                        {
+                                            pagePreparation.acf.forbidden_substances.split(",").map( elem => {
+                                                return(
+                                                    <li><FontAwesomeIconTimes icon={faTimes} />{elem.trim()}</li>
+                                                
+                                                )
+                                            })
+                                        }
+                                    </ul>
+                                </div>
+                            </AllowedForbbidenContainer>
+                            
+                        </Panel>
+
+                        <Panel>
+                            <AllowedForbbidenContainer>
+                                
+                                <p>{pagePreparation.acf.important_note_food}</p>
+                                
+                                <div>
+            
+                                    <ul>
+                                        <h3>Forbbiden Activities</h3>
+                                        {
+                                            pagePreparation.acf.forbidden_activities.split(",").map( elem => {
+                                                return(
+                                                    <li><FontAwesomeIconTimes icon={faTimes} />{elem.trim()}</li>
+                                                
+                                                )
+                                            })
+                                        }
+                                    </ul>
+
+                        
+                                    <ul>
+                                        <h3>Allowed Food</h3>
+                                        {
+                                            pagePreparation.acf.allowed_activities.split(",").map( elem => {
+                                                return(
+                                                    <li><FontAwesomeIconCheck icon={faCheck} />{elem.trim()}</li>
+                                                )
+                                            })
+                                        }
+                                    </ul>
+
+                                </div>
+                                
+                            </AllowedForbbidenContainer>
+
+                        </Panel>
+
+                        <Panel>
+                            <AllowedForbbidenContainer>
+                                <ul>
                                     {
-                                        pagePreparation.acf.forbidden_substances.split(",").map( elem => {
+                                        pagePreparation.acf.what_to_expect.split("%").map( elem => {
                                             return(
-                                                <li><FontAwesomeIconTimes icon={faTimes} />{elem.trim()}</li>
-                                            
+                                                <li><p><FontAwesomeIconCheck icon={faCheck} />{elem.trim()}</p></li>
                                             )
                                         })
                                     }
-                                </div>
-
-                                <div>
-                                    <p>{pagePreparation.acf.important_note_substances}</p>
-                                </div>
-                            </FoodItems>
-                        </>
-                    : ''}
-                    {view === 2 ? 
-                        <>
-
-                        <FoodItems>
-
-                           
-                            <div>
-                                <h4>Forbbiden Activities</h4>
-                                {
-                                    pagePreparation.acf.forbidden_activities.split(",").map( elem => {
-                                        return(
-                                            <li><FontAwesomeIconTimes icon={faTimes} />{elem.trim()}</li>
-                                        
-                                        )
-                                    })
-                                }
-                            </div>
-
-                            <div>
-                                <h4>Allowed Activities</h4>
-                                {
-                                    pagePreparation.acf.allowed_activities.split(",").map( elem => {
-                                        return(
-                                            <li><FontAwesomeIconCheck icon={faCheck} />{elem.trim()}</li>
-                                        )
-                                    })
-                                }
-                            </div>
-
-                            <div>
-                                <p>{pagePreparation.acf.activities_text}</p>
-                            </div>
-
-                        </FoodItems>
-                        </>
-                    : ''}
-                    {view === 3 ? 
-                    <>
-                        {
-                            pagePreparation.acf.what_to_expect.split("%").map( elem => {
-                                return(
-                                    <p>{elem.trim()}</p>
-                                )
-                            })
-                        }
-                    </>
-                    : ''}
-                </div>
-            </AboutContainer>
-        </>
+                                </ul>
+                            </AllowedForbbidenContainer>
+                        </Panel>
+                    </PanelList>
+                </Tabs>
+        </MarginPaddingContainer>
         }
         </>
     )
 }
-
-const MarginTop = styled.div`
-    margin-top: 6.5rem;
-`
-
-export const AboutContainer = styled.div`
-
-    margin-top: 12rem;
-    padding: 0 4rem;
-
-    h1{
-        text-align: center;
-        font-size: 2rem;
-        margin-top: 4rem;
-        margin-bottom: 4rem;
-        margin-left: 1rem;
-        color: #444;
-    }
-
-    @media (max-width: 768px){
-        padding: 0;
-    }
-`
 
 export const ButtonContainer = styled.div`
     display: flex;
@@ -319,6 +336,60 @@ const FoodItems = styled.div`
 
         p {
             font-size: 1.2rem;
+        }
+    }
+`
+
+
+const AllowedForbbidenContainer = styled.div`
+    
+    padding: 2rem 20rem;
+    color:#565656;
+
+    @media (max-width: 768px){
+        padding: 1rem;
+    }
+
+    div {
+        display: flex;
+        justify-content: space-evenly;
+    }
+
+    h2{
+        font-size: 2.2rem;
+        text-align: center;
+        line-height: 1.5;
+
+        @media (max-width: 768px){
+            font-size: 1.5rem;
+        }
+
+    }
+
+    p {
+        line-height: 1.5;
+        margin: 2rem 0;
+        font-size: 1.3rem;
+
+        @media (max-width: 768px){
+            font-size: 1rem;
+            margin-bottom: 0;
+        }
+    }
+
+    ul {
+        margin-left: 0;
+        padding-left: 0;
+        margin-right: 2rem;
+    }
+
+    li {
+        list-style: none;
+        line-height: 1.5;
+        font-size: 1.2rem;
+
+        @media (max-width: 768px){
+            font-size: 1rem;
         }
     }
 `

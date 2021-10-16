@@ -15,7 +15,6 @@ const settings = {
         "theme": {
           "menu": [
             ["About", "/about/"],
-            ["Retreats", "/retreats/"],
             ["Ayahuasca", "/ayahuasca/"],
             ["Plant Dieta", "/plantdieta/"],
             ["Preparation", "/preparation/"],            

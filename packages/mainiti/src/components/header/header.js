@@ -3,13 +3,15 @@ import { connect, styled } from "frontity";
 import Link from "../link";
 import Nav from "./nav";
 import MobileMenu from "./menu";
+import Image from "@frontity/components/image";
+import Logo from '../../images/logo.png';
 
 const Header = ({ state }) => {
   return (
     <AllNavbar>
       <BrandContainer>
         <StyledLink link="/">
-          <Title><span>MAI</span> NITI</Title>
+          <Image src={Logo} />
         </StyledLink>
         <MobileMenu />
       </BrandContainer>

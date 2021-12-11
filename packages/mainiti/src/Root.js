@@ -4,7 +4,6 @@ import Header from "./components/header/header";
 import Footer from './components/footer';
 import Homepage from './components/homepage';
 import Faqs from './components/Faqs';
-import Retreats from './components/Retreat';
 import Preparation from './components/Preparation';
 import About from './components/About';
 import Ayahuasca from './components/Ayahuasca';
@@ -14,13 +13,28 @@ import ContactRegisterForm from './components/ContactRegisterForm';
 import ContactFooter from './components/ContactFooter';
 import TestimonialPage from './components/TestimonialPage';
 
+/**REACT SPRING IMPORT */
+import Switch from "@frontity/components/switch";
+import {useTransition, animated} from '@react-spring/web'
+
 const Root = ({state, actions}) => {
 
-    const data = state.source.get(state.router.link);
+    //const data = state.source.get(state.router.link);
 
     useEffect( () => {
-        actions.source.fetch("/home")
+        actions.source.fetch("/home");
+        actions.source.fetch("/faqs")
     }, [])
+
+
+    // Page transitions
+    const transitions = useTransition(state.router.link, {
+        from: { opacity: 0,},
+        enter: { opacity: 1, },
+        leave: { opacity: 0, display: "none"},
+        config: { duration: 600 },
+    });
+ 
     
     return (
       <>
@@ -45,11 +59,11 @@ const Root = ({state, actions}) => {
                         height: -webkit-fill-available;
                     }
 
-/*                 
-                    * {
+         
+                    /* * {
                         border: 1px solid #f00 !important;
-                    }   
-                       */
+                    }    */
+                    
                 `}
             />
 
@@ -66,16 +80,27 @@ const Root = ({state, actions}) => {
         {/** Navbar */}       
         <Header />
 
-        {data.isHomePage && <Homepage /> }
+        {transitions((props, item) => {
+            const dataitem = state.source.get(state.router.link)
+                return(
+                    <animated.div style={props}>
+                        <Switch location={item}>
+                            <Homepage when={dataitem.isHomePage} />  
+                            {state.router.link === "/faqs/" && <Faqs />}
+                            {state.router.link === "/retreats/" && <Retreats />}
+                            {state.router.link === "/preparation/" && <Preparation />}
+                            {state.router.link === "/about/" && <About />}
+                            {state.router.link === "/ayahuasca/" && <Ayahuasca />}
+                            {state.router.link === "/plantdieta/" && <Dieta />}
+                            {state.router.link === "/testimonials/" && <TestimonialPage />}
+                            {state.router.link === "/contact/" && <ContactRegisterForm />}
 
-        {state.router.link === "/faqs/" && <Faqs />}
-        {state.router.link === "/retreats/" && <Retreats />}
-        {state.router.link === "/preparation/" && <Preparation />}
-        {state.router.link === "/about/" && <About />}
-        {state.router.link === "/ayahuasca/" && <Ayahuasca />}
-        {state.router.link === "/plantdieta/" && <Dieta />}
-        {state.router.link === "/testimonials/" && <TestimonialPage />}
-        {state.router.link === "/contact/" && <ContactRegisterForm />}
+                        </Switch>
+                    </animated.div>
+
+                )   
+            }
+        )} 
                 
         <ContactFooter />
         <Footer title={"Mainiti Healing Center"}/>   

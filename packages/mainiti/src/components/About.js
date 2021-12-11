@@ -3,17 +3,10 @@ import { connect, styled, css, Global } from "frontity";
 import Image from "@frontity/components/image";
 import Loading from './Loading';
 
-import PresentationMode from './testimonials/PresentationMode';
-
 //icons
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDotCircle, faMapMarkerAlt, faCheck, faTimes, faStar, faUser, faDoorOpen, faBed, faBath, faArrowLeft, faHome, faUtensils, faHandsHelping, faCarrot, faAppleAlt, faFish } from '@fortawesome/free-solid-svg-icons'
 import { faSeedling, faRainbow, faCampground, faHeart} from '@fortawesome/free-solid-svg-icons';
-
-
-//Presentation Mode 
-import CarouselAllStyles from "react-responsive-carousel/lib/styles/carousel.css"; // requires a loader
-import { Carousel } from 'react-responsive-carousel';
 
 //import preparation styles
 import {AboutContainer, ButtonContainer, ButtonStyles} from './Preparation'
@@ -26,6 +19,8 @@ import * as customStyle from 'react-tabtab/lib/themes/bootstrap/index';
 //card details
 import CardDetails from './CardDetails';
 import StylesCardDetails from '../components/styles/cardDetails.css'
+
+import {CardDescriptionContainer, ImageDescriptionContainer} from './Ayahuasca';
 
 
 const About = ({ state, actions, libraries }) => {
@@ -198,67 +193,61 @@ const About = ({ state, actions, libraries }) => {
                     </div>
                 </div>
             </>
-
-            <WrapWarningCarousel>
             
-                <CardWarning>
-                    <ImageCardWarning src={pageAbout.acf.presentation_group.outside_maloka.sizes.large}/>
-                    <TextCircle>
-                        <h1>Warning!</h1>
-                        {
-                            pageAbout.acf.warning_note.split("%").map( elem => {
-                                return(
-                                    <h4>{elem.trim()}</h4>
-                                )
-                            })
-                        }
-                    </TextCircle>
+                <WarningCard>
+                    <h1>WARNING!</h1>
+                    {pageAbout.acf.warning_note.split("%").map( elem => {
+                        return(
+                            <h4>{elem.trim()}</h4>
+                        )
+                    })}
 
-                </CardWarning>
+                </WarningCard>
 
-                <div css= {css`max-width: 45%;  @media (max-width: 768px) {max-width: 100%;}`}>
-                    <Global styles={CarouselAllStyles} />
+            <div css={css`background-color: #F8F8FA;`}>
+            <CardDescriptionContainer>
 
-                    <Carousel autoFocus={true} showThumbs={false} showStatus={false} useKeyboardArrows className="presentation-mode" autoPlay={true} interval={3000}>
-                        <div key="content-0" className="my-slide primary">
-                            <h1>The Maloka</h1>
-                            <p>{pageAbout.acf.presentation_group.maloka_text}</p>
-                        </div>
+                <ImageDescriptionContainer src={pageAbout.acf.presentation_group.inside_maloka.sizes.large} />
 
-                        <div key="content-3" className="my-slide content">
-                            <h2>Outside the Maloka</h2>
-                            <img src={pageAbout.acf.presentation_group.outside_maloka.sizes.large} />
-                        </div>
-                        <div key="content-3" className="my-slide content">
-                            <h2>Inside the Maloka</h2>
-                            <img src={pageAbout.acf.presentation_group.inside_maloka.sizes.large} />
-                        </div>
-                        <div key="content-10" className="my-slide content">
-                            <h2>Community House</h2>
-                            <img src={pageAbout.acf.presentation_group.community_house_image_one.sizes.large} />
+                <div>
+                    <h2>The Maloka</h2>
 
-                            <p>
-                                {pageAbout.acf.presentation_group.community_house_text.split("%").slice(1,2).map( elem => {
-                                return(
-                                    <p>{elem.trim()}</p>
-                                )
-                                })}
-                            </p>
-                        </div>
-                        <div key="content-11" className="my-slide content">
-                            <img src={pageAbout.acf.presentation_group.community_house_image_two.sizes.large} />  
-                            <p>
-                                {pageAbout.acf.presentation_group.community_house_text.split("%").slice(2).map( elem => {
-                                return(
-                                    <p>{elem.trim()}</p>
-                                )
-                                })}
-                            </p>          
-                        </div>
-                    </Carousel>
+                    {
+                        <p>{pageAbout.acf.presentation_group.maloka_text}</p>
+                    }
                 </div>
 
-            </WrapWarningCarousel>
+            </CardDescriptionContainer>
+            
+            <CardDescriptionContainer>
+                <div>
+                    <h2>Community House</h2>
+
+                    {
+                        <p>
+                            {pageAbout.acf.presentation_group.community_house_text.split("%").slice(1,2).map( elem => {
+                                return(
+                                    <p>{elem.trim()}</p>
+                                )
+                            })}
+                        </p>
+                    }
+
+                    {
+                        <p>
+                            {pageAbout.acf.presentation_group.community_house_text.split("%").slice(2).map( elem => {
+                                return(
+                                    <p>{elem.trim()}</p>
+                                )
+                            })}
+                        </p> 
+                    }
+                </div>
+
+                <ImageDescriptionContainer src={pageAbout.acf.presentation_group.community_house_image_two.sizes.large} />
+
+            </CardDescriptionContainer>
+            </div>
 
             <ContainerDirections>         
                 <CardDirections>
@@ -537,68 +526,36 @@ export const ProductImage = styled.div`
     } 
 `
 
-const WrapWarningCarousel = styled.div`
+const WarningCard = styled.div`
+
     display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    max-width: 100%;
-    margin-bottom: 3rem;
-
-    @media (max-width: 768px) {flex-direction: column; padding: 0; margin: 0;}
-`
-
-const CardWarning = styled.div`
-    position: relative;
-    flex-basis: 45%;
-    justify-content: center;
-    margin-top: 2rem;
-    padding-right: 1rem;
-    padding-left: 1rem;
-
-    @media (max-width: 768px) {
-        position: unset; 
-        flex-basis: 100%; 
-        padding: 1rem; 
-        margin: 0rem; 
-    }
-`
-
-const TextCircle = styled.div`
-    position: absolute;
-    border-radius: 50%;
-    height: 50%;
-    width: 40%;
+    flex-direction: column;
+    border-radius: .5rem;
     background-color: yellow;
-    padding: 2rem;
-    right: 2rem;
-    top: 5rem;
+    padding: 5rem;
     text-align: center;
+    margin: 4rem 20rem;
 
     @media (max-width: 768px) {
-        position: unset;
-        height: 100%!important;
-        width: 100%!important;
-        right: 0!important;
-        top: 0!important;
-        bottom: 0!important;
-        left: 0!important;
         margin: 0!important;
-        border-radius: .5rem;
         padding: 0!important;
     }
 
     h1{
-        font-size: 2rem;
+        font-size: 1.8rem;
+        
         @media (max-width: 768px) {
             font-size: 1.2rem;
             padding: .5rem 2rem;
         }
+        
         color: #000;
     }
 
     h4 {
-        font-size: 1rem;
+        font-size: 1.2rem;
         color: #000;
+        margin: .5rem;
 
         @media (max-width: 768px) {
             font-size: .9rem;
@@ -606,21 +563,7 @@ const TextCircle = styled.div`
         }
     }
 
-    @media (min-width: 768px) {
-        max-height: 100%;
-        max-width: 100%;
-    }
-`
 
-
-const ImageCardWarning = styled(Image)`
-    max-width: 100%;
-    max-height: 100%;
-    filter: grayscale(50%);
-
-    @media (max-width: 768px) {
-        display: none;
-    }
 `
 
 const ContainerDirections = styled.div`

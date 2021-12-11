@@ -10,12 +10,12 @@ import { faSeedling, faRainbow, faCampground, faHeart} from '@fortawesome/free-s
 
 // react tab tab
 import {Tabs, TabList, Tab, PanelList, Panel} from 'react-tabtab';
-import * as customStyle from 'react-tabtab/lib/themes/bootstrap/index';
+import * as customStyle from 'react-tabtab/lib/themes/bulma/index';
 
 import {RowOneContainer, BoxContainer} from './dieta';
 
 //import ayahuasca styles 
-import {MainParagraph, CardDescriptionContainer, ImageDescriptionContainer} from './Ayahuasca';
+import {MainParagraph, CardDescriptionContainer, ImageDescriptionContainer, MarginTemporalTab} from './Ayahuasca';
 
 // import about styles
 import {MarginPaddingContainer, HeaderContainer, Title, Separator} from './About';
@@ -58,6 +58,8 @@ const Preparation = ({ state, actions, libraries }) => {
                     <Title>Preparation</Title>
                     <Separator></Separator>
                 </HeaderContainer>
+
+                <MarginTemporalTab />
 
                 <Tabs customStyle={customStyle}>
                     <TabList>

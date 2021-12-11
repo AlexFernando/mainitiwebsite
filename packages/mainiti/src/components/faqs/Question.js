@@ -5,9 +5,7 @@ import { AiOutlineMinus, AiOutlinePlus } from 'react-icons/ai'
 const Question = ({question}) => {
 
   let questionString = question.question;
-  let answerString = question.answer;
-
-  console.log(questionString, " ",answerString); 
+  let answerString = question.answer; 
 
   const [expanded, setExpanded] = useState(false)
 

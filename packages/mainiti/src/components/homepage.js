@@ -2,21 +2,19 @@ import React, { useEffect } from "react";
 import { connect, styled, Global } from "frontity";
 import Link from "../components/link";
 import Image from "@frontity/components/image";
-import MyBgImage from '../images/background.jpg'
 
 import LinkFirstButton from './LinkButtonHome';
 import LinkSecondButton from './LinkButtonHomeSecond';
 //import ImageServices from '../images/diamond.svg'
 import LinkButtonCta from './LinkButtonCta';
 
-import AppTestimonial from './testimonials/AppTestimonial';
-import PresentationMode from './testimonials/PresentationMode';
-
-/** import styles from Preparation components */
-import {CardContainerAll, CardAbout, ImageAboutStyles} from './About';
+import AppTestimonialAlternative from './testimonials/AppTestimonialAlternative';
 
 /**Styles for Card Hover Effects */
 import StylesCardHover from '../components/styles/cardHoverEffects.css';
+
+/**awesome words styles */
+import AwesomeWordStyles from './styles/wordsAwesone.css';
 
 
 import Loading from './Loading'
@@ -30,8 +28,6 @@ const HomePage = ({ state, actions, libraries }) => {
   
     // Get information about the current URL.
     const data = state.source.get(state.router.link);
-
-    console.log("la data : ", data)
     
     // Get the data of the post.
     const pageHome = state.source.page[6];
@@ -52,17 +48,40 @@ const HomePage = ({ state, actions, libraries }) => {
                 <div>
                     <h1><strong>{pageHome.acf.main_section_title}</strong></h1>
                     <h1>{pageHome.acf.main_section_subtitle}</h1>
-                    <p>
-                        {pageHome.acf.paragraph_welcome}
-                    </p>
+                    <>
+                    
+                        <Global styles={AwesomeWordStyles} />
+
+                        <section class="rw-wrapper">
+                            <h2 class="rw-sentence">
+                                <span>A center where you can learn to </span>
+                                <span>heal your</span>
+                                <div class="rw-words rw-words-1">
+                                    <span></span>
+                                    <span>Body</span>
+                                    <span>Mind</span>
+                                    <span>Spirit</span>
+                                    <span>Self</span>
+                                </div>
+                                <br />
+                                <span>At every moment you will find the support of </span>
+                                <div class="rw-words rw-words-2">
+                                    <span></span>
+                                    <span>The Maestros</span>
+                                    <span>Plant Medicine</span>
+                                    <span>Volunteers</span>
+                                    <span>YourSelf!</span>
+                                </div>
+                            </h2>
+                        </section>
+                    </>
                     <ButtonSet>
-                        <LinkFirstButton href="#" >Retreats</LinkFirstButton>
-                        <LinkSecondButton href="#">Contact us</LinkSecondButton>
+                        <LinkFirstButton href="/ayahuasca" >Retreats</LinkFirstButton>
+                        <LinkSecondButton href="/contact">Contact us</LinkSecondButton>
                     </ButtonSet>
                 </div>
 
                 <ImageCircle src={pageHome.acf.main_section_image.sizes.large} />
-
 
             </MainSection>
 
@@ -136,6 +155,18 @@ const HomePage = ({ state, actions, libraries }) => {
     
             </CardContainerMaestros>
 
+            <HomeCta>
+                <h2>
+                    Reach out for Retreats Information
+                </h2>
+
+                <p>Review our Personalised Healing Retreats, Ayahuasca Retreats and Master Plant Dietas.</p>
+
+                <div>
+                    <LinkButtonCta href="/plantdieta" >Retreats</LinkButtonCta>
+                </div>
+            </HomeCta>
+
             <CardContainerServices>
                 <Global styles={StylesCardHover} />             
 
@@ -162,19 +193,8 @@ const HomePage = ({ state, actions, libraries }) => {
       
             </CardContainerServices>
 
-            <HomeCta>
-                <h2>
-                    Reach out for Retreats Information
-                </h2>
+            <AppTestimonialAlternative />
 
-                <p>Review our Personalised Healing Retreats, Ayahuasca Retreats and Master Plant Dietas.</p>
-
-                <div>
-                    <LinkButtonCta>Retreats</LinkButtonCta>
-                </div>
-            </HomeCta>
-
-            <AppTestimonial />
         </>
 
         }
@@ -187,21 +207,24 @@ export default connect(HomePage);
 
 const MainSection = styled.div`
     display: grid;
-    grid-template-columns: repeat(1, 1fr);
+    grid-template-columns: 100%;
+    justify-content: center;
+    align-content: center;
+    text-align: center;
     margin-top: 2rem;
     padding-right: 1rem;
     padding-left: 1rem;
-  
 
     @media (min-width: 768px) {
         grid-template-columns: repeat(2, 1fr);
-        grid-gap: 5rem;
+        grid-gap: 10rem;
         padding-right: 22rem;
         padding-left: 22rem;
-        margin-top: 8rem;
+        margin-top: 10rem;
         margin-bottom: 5rem;
         justify-items: center;
         align-items: center;
+        text-align: left;
     }
 
     h1 {
@@ -221,15 +244,18 @@ const ImageCircle = styled(Image)`
     border-radius: 50%;
     max-height: 100%;
     max-width: 100%;
+    margin-top: 2rem;
 
     @media (min-width: 768px) {
         max-height: 550px;
         max-width: 550px;
+        margin-top: 0rem;
     }
 `
 
 const ButtonSet = styled.div`
     display: flex;
+    justify-items: center;
 `
 
 

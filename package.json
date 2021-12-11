@@ -27,10 +27,12 @@
     "@frontity/mars-theme": "./packages/mars-theme",
     "@frontity/tiny-router": "^1.4.4",
     "@frontity/wp-source": "^1.11.5",
+    "@react-spring/web": "^9.3.0",
     "frontity": "^1.17.0",
     "mainiti": "file:packages/mainiti",
-    "react-icons": "^4.2.0",
-    "react-responsive-carousel": "^3.2.21",
+    "react-icons": "^4.3.1",
+    "react-player": "^2.9.0",
+    "react-responsive-carousel": "^3.2.22",
     "react-tabtab": "^2.0.0",
     "styled-components": "^4.4.1"
   }

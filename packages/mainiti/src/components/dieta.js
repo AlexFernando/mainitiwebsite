@@ -14,11 +14,11 @@ import {MarginPaddingContainer, HeaderContainer, Title, Separator, CardAbout, Im
 
 //import ayahuasca styles 
 
-import {MainParagraph, CardDescriptionContainer, ImageDescriptionContainer} from './Ayahuasca';
+import {MainParagraph, CardDescriptionContainer, ImageDescriptionContainer, MarginTemporalTab} from './Ayahuasca';
 
 // react tab tab
 import {Tabs, TabList, Tab, PanelList, Panel} from 'react-tabtab';
-import * as customStyle from 'react-tabtab/lib/themes/bootstrap/index';
+import * as customStyle from 'react-tabtab/lib/themes/bulma/index';
 
 //styled card details
 import StylesCardDetails from '../components/styles/cardDetails.css';
@@ -106,6 +106,8 @@ const PlantDieta = ({ state, actions, libraries }) => {
                     }
                 </div>
             </MasterPlantsContainer>
+
+                <MarginTemporalTab />
 
                 <Tabs customStyle={customStyle}>
                     <TabList>

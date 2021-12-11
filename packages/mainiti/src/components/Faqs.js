@@ -21,30 +21,15 @@ const Faqs = ({state, actions, libraries}) => {
 
     const pageFaqs = state.source.page[29];
     /**Start Question app */
+
+    let dataFaqsFinal = [];
+
+    if(typeof pageFaqs !== "undefined"){
+        dataFaqsFinal = Object.keys(pageFaqs.acf).map( elem => pageFaqs.acf[elem]);
+    }
     
-    let objFaqs = pageFaqs.acf;
-
-    let dataFaqsFinal = []
-
-    dataFaqsFinal = Object.keys(objFaqs).map( elem => objFaqs[elem]);
-    
-/*         if(objFaqs[key].GroupType === "Getting here") {
-            gettinghere.push(objFaqs[key]);
-        }
-        else if(objFaqs[key].GroupType === "Ayahuasca") {
-            ayahuasca.push(objFaqs[key]);
-        }
-        else if(objFaqs[key].GroupType === "Staying here") {
-            staying.push(objFaqs[key]);
-        }
-        else {
-            preparation.push(objFaqs[key]);
-        }  */
-
-
-
     const [questions, setQuestions] = useState(dataFaqsFinal);
-
+    
     return(
 
         <>
@@ -68,7 +53,6 @@ const Faqs = ({state, actions, libraries}) => {
                 </main>
                 
             </MarginPaddingContainer>
-
         }    
         
         </>

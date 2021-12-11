@@ -8,17 +8,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDotCircle, faMapMarkerAlt, faCheck, faTimes, faHome, faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 import { faSeedling, faRainbow, faCampground, faHeart} from '@fortawesome/free-solid-svg-icons';
 
-//import preparation styles
-import {AboutContainer, ButtonContainer, ButtonStyles, CardContainer, CardText} from './Preparation';
+//import about styles
 import {MarginPaddingContainer, HeaderContainer, Title, Separator, CardProduct, ProductDetails, ProductImage, ImageProductCard, SeparatorCard} from './About';
-
-//Presentation Mode 
-import CarouselAllStyles from "react-responsive-carousel/lib/styles/carousel.css"; // requires a loader
-import { Carousel } from 'react-responsive-carousel';
 
 // react tab tab
 import {Tabs, TabList, Tab, PanelList, Panel} from 'react-tabtab';
-import * as customStyle from 'react-tabtab/lib/themes/bootstrap/index';
+import * as customStyle from 'react-tabtab/lib/themes/bulma/index';
 
 //styled card details
 import StylesCardDetails from '../components/styles/cardDetails.css'
@@ -45,6 +40,8 @@ const Ayahuasca = ({ state, actions, libraries }) => {
             <MainParagraph>
                 <p>{pageAyahuasca.acf.paragraph_one}</p>
             </MainParagraph>
+
+            <MarginTemporalTab />
             
             <Tabs customStyle={customStyle}>
                 <TabList>
@@ -228,6 +225,14 @@ export const ImageDescriptionContainer = styled(Image)`
         display: none;
     } 
 	
+`
+
+export const MarginTemporalTab = styled.div`
+    margin-top: 5rem;
+
+    @media (max-width: 768px) {
+        margin-top: 2rem;
+    } 
 `
 
 

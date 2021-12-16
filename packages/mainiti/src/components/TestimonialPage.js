@@ -10,7 +10,7 @@ import { Carousel } from 'react-responsive-carousel';
 import ReactPlayer from 'react-player';
 
 // import about styles
-import {MarginPaddingContainer, HeaderContainer, Title, Separator} from './About';
+import {MarginPaddingContainer, HeaderContainer, Title, Separator, MainParagraph} from './About';
 
 //Images importing 
 import fbIcon from '../images/facebook_small_icon.png';
@@ -21,7 +21,20 @@ const YoutubeSlide = ({ url, isSelected }) => (
     <ReactPlayerStyles url={url} /> 
 );
 
-export const YoutubeAutoplayWithCustomThumbs = () => {
+const TestimonialPage  = ({state, actions, libraries}) => {
+
+          // get data starts
+          useEffect(() => {
+            actions.source.fetch("/testimonials");
+        }, []);
+    
+        // Get the data of the post.
+        const pageTestimonial = state.source.page[566];
+  
+    
+        //get data ends
+
+
     const customRenderItem = (item, props) => <item.type {...item.props} {...props} />;
 
     const getVideoThumb = (videoId) => `https://img.youtube.com/vi/${videoId}/default.jpg`;
@@ -34,261 +47,74 @@ export const YoutubeAutoplayWithCustomThumbs = () => {
             return <img src={getVideoThumb(videoId)} />
         });
 
-
         /**Weird code */
-    console.log("aca el window: ", window.innerWidth)
 
     let myInner = window.innerWidth;
 
-    console.log("lsanflks: " ,myInner)
-
-
-
     let myPercentage = myInner < 600 ? 100 : 50;
-
-    console.log(myPercentage)
 
     /**weird code */
     
-
     return (
 
         <>
 
-        {typeof myPercentage === "undefined" ? <Loading /> : 
+        {typeof pageTestimonial === "undefined" ? <Loading /> : 
         <MarginPaddingContainer>
                 
         <HeaderContainer>
-            <Title>AYAHUASCA RETREAT TESTIMONIALS</Title>
+            <Title>{pageTestimonial.acf.testimonial_title}</Title>
             <Separator></Separator>
-
         </HeaderContainer>
+
+        <MainParagraph>
+            <p>{pageTestimonial.acf.subtitle_one}</p> 
+            <p>{pageTestimonial.acf.subtitle_two}</p>
+        </MainParagraph>
+
         <CarouselContainer>
             <Global styles={CarouselAllStyles} />
 
-            <h3>Testimonials from people who have stayed with us.</h3>
             <Carousel renderItem={customRenderItem} renderThumbs={customRenderThumb} centerMode={true} showIndicators={false} centerSlidePercentage={myPercentage}>
-                <YoutubeSlide key="youtube-1" url="https://www.youtube.com/embed/qX9st7FALDU" />
-                <YoutubeSlide key="youtube-2" url="https://www.youtube.com/embed/rpICg_H9Xbw" />
-                <YoutubeSlide key="youtube-3" url="https://www.youtube.com/embed/rpICg_H9Xbw" />
-                <YoutubeSlide key="youtube-4" url="https://www.youtube.com/embed/G1IIxPh7E7M" />
-                <YoutubeSlide key="youtube-5" url="https://www.youtube.com/embed/qX9st7FALDU" />
-                <YoutubeSlide key="youtube-6" url="https://www.youtube.com/embed/rpICg_H9Xbw" />
-                <YoutubeSlide key="youtube-7" url="https://www.youtube.com/embed/rpICg_H9Xbw" />
-                <YoutubeSlide key="youtube-8" url="https://www.youtube.com/embed/G1IIxPh7E7M" />
+                {
+                    Object.keys(pageTestimonial.acf.videos_url).map( (elem, index) => {
+                        return(
+                            <YoutubeSlide key={`youtube-`+index} url={pageTestimonial.acf.videos_url[elem]}/>
+                        )
+                    })
+                }
             </Carousel>
-
-
-            <h3>Click on the left and right arrows, to see all the testimonials</h3>
 
             <Carousel centerMode={true} showIndicators={false} centerSlidePercentage={myPercentage} showThumbs={false} >
 
-                <TestimonialContainer>
-                    <TextTestimonial>
-                
+                {Object.keys(pageTestimonial.acf.text_testimonial).map( (elem, index) => {
+                    return(
+                        <TestimonialContainer>
+                            <TextTestimonial>
+                                <p>
+                                    <ImageStyledIconPositive src={positiveIcon} />
 
-                            <p> 
-                                <ImageStyledIconPositive src={positiveIcon} />
+                                    <span>
+                                        {pageTestimonial.acf.text_testimonial[elem].text}
+                                    </span>
+                                    <ImageStyledFbIcon src={fbIcon} /> 
+                                </p>
+                            </TextTestimonial>
+
+                            <DetailTestimonial>
+                                <span>
+                                    <ImageStyledTestimonial src={pageTestimonial.acf.text_testimonial[elem].image.sizes.thumbnail}/>
+                                </span>
 
                                 <span>
-                                    I arrived in Mai Niti as a volunteer, planning to stay not more than 3 weeks, helping out with some tasks at the center. 
-                                    But as soon as I arrived I realized it was such a special place and I felt like I needed to stay longer. 
-                                    The people there were so welcoming to me, the place is cozy and everything is set in a way so that everybody always stay together. 
-                                    I feel we were a family. Lucila, the shaman, is always attentive to the guests and spreading her care and high energy around. 
-                                    She is usually up to hear everybody's opinions about the events, the ceremony, the place, looking for improvements and mainly, checking how we all are feeling during the day. 
-                                    Finally, what I can say it impressed me most was definitely the energy of this place. It has some kind of mystery, which is really hard for me to explain, but I simply felt like there I was facing my truth and fears, there was no way out other than looking inside me. 
-                                    Thanks loads to Lucy, who received me openly and helped me in the way I needed, and also, to all of the guests, volunteers and workers I met there. 
-                                    All of them were undoubtedly unique in my experience and so grateful for it! Thank you!
-                                </span> 
+                                    {pageTestimonial.acf.text_testimonial[elem].name}
+                                    {pageTestimonial.acf.text_testimonial[elem].date}
+                                </span>
+                            </DetailTestimonial>
 
-                                <ImageStyledFbIcon src={fbIcon} />                           
-                            </p>
-                        
-                    </TextTestimonial>
-
-                    <DetailTestimonial>
-                        <span>
-                            <ImageStyledTestimonial src={testimonialImage}/>
-                        </span>
-
-                        <span>
-                            JULIANA W.
-                            JULY 15, 2019
-                        </span>
-                    </DetailTestimonial>
-                </TestimonialContainer>
-
-
-                <TestimonialContainer>
-                    <TextTestimonial>
-                        <p> 
-
-                            <ImageStyledIconPositive src={positiveIcon} />
-
-                            <span>
-                                I went to the healing center for the 12 day retreat, finding out about it from a friend who had recommended it to me. 
-                                I was searching for a Ayahuasca center that was still authentic, as it is very difficult to find one in Peru that is not based off money and tourism. 
-                                I can truely say, Mai Niti was everything I could have hoped for, and more. If you are looking for a fully authentic, affordable, and personable retreat, 
-                                look no further. Lucia, Leonardo, their family, and their friends, take you in like you are part of the family instantly. This place becomes your home, 
-                                and you make friends that you will never forget here. Aside from the Ayahuasca ceremonies, they teach you about some of the thousands of other medicinal plants 
-                                used for healing, and teach you the ways of their culture. The Shipibo tribe is one of the pioneers of the Ayahuasca healing tradition and Shamanism, 
-                                and Leonardo is possibly one of the most experienced Shamans in Peru. You learn about the people and their culture, you learn about the plant knowledge 
-                                passed through the generations, and most importantly you learn about yourself. If you feel the call, Mai Niti will answer and you will come out a different person!
-                            </span>
-
-                            <ImageStyledFbIcon src={fbIcon} />  
-                        </p>
-                    </TextTestimonial>
-                    
-                    <DetailTestimonial>
-                        <span>
-                            <ImageStyledTestimonial src={testimonialImage}/>
-                        </span>
-
-                        <span>
-                            JOSH H.
-                            JULY 26, 2019
-                        </span>
-                    </DetailTestimonial>
-                </TestimonialContainer>
-
-                <TestimonialContainer>
-                    <TextTestimonial>
-                
-
-                            <p> 
-                                <ImageStyledIconPositive src={positiveIcon} />
-
-                                <span>
-                                    I arrived in Mai Niti as a volunteer, planning to stay not more than 3 weeks, helping out with some tasks at the center. 
-                                    But as soon as I arrived I realized it was such a special place and I felt like I needed to stay longer. 
-                                    The people there were so welcoming to me, the place is cozy and everything is set in a way so that everybody always stay together. 
-                                    I feel we were a family. Lucila, the shaman, is always attentive to the guests and spreading her care and high energy around. 
-                                    She is usually up to hear everybody's opinions about the events, the ceremony, the place, looking for improvements and mainly, checking how we all are feeling during the day. 
-                                    Finally, what I can say it impressed me most was definitely the energy of this place. It has some kind of mystery, which is really hard for me to explain, but I simply felt like there I was facing my truth and fears, there was no way out other than looking inside me. 
-                                    Thanks loads to Lucy, who received me openly and helped me in the way I needed, and also, to all of the guests, volunteers and workers I met there. 
-                                    All of them were undoubtedly unique in my experience and so grateful for it! Thank you!
-                                </span> 
-
-                                <ImageStyledFbIcon src={fbIcon} />                           
-                            </p>
-                        
-                    </TextTestimonial>
-
-                    <DetailTestimonial>
-                        <span>
-                            <ImageStyledTestimonial src={testimonialImage}/>
-                        </span>
-
-                        <span>
-                            JULIANA W.
-                            JULY 15, 2019
-                        </span>
-                    </DetailTestimonial>
-                </TestimonialContainer>
-
-
-                <TestimonialContainer>
-                    <TextTestimonial>
-                        <p> 
-
-                            <ImageStyledIconPositive src={positiveIcon} />
-
-                            <span>
-                                I went to the healing center for the 12 day retreat, finding out about it from a friend who had recommended it to me. 
-                                I was searching for a Ayahuasca center that was still authentic, as it is very difficult to find one in Peru that is not based off money and tourism. 
-                                I can truely say, Mai Niti was everything I could have hoped for, and more. If you are looking for a fully authentic, affordable, and personable retreat, 
-                                look no further. Lucia, Leonardo, their family, and their friends, take you in like you are part of the family instantly. This place becomes your home, 
-                                and you make friends that you will never forget here. Aside from the Ayahuasca ceremonies, they teach you about some of the thousands of other medicinal plants 
-                                used for healing, and teach you the ways of their culture. The Shipibo tribe is one of the pioneers of the Ayahuasca healing tradition and Shamanism, 
-                                and Leonardo is possibly one of the most experienced Shamans in Peru. You learn about the people and their culture, you learn about the plant knowledge 
-                                passed through the generations, and most importantly you learn about yourself. If you feel the call, Mai Niti will answer and you will come out a different person!
-                            </span>
-
-                            <ImageStyledFbIcon src={fbIcon} />  
-                        </p>
-                    </TextTestimonial>
-                    
-                    <DetailTestimonial>
-                        <span>
-                            <ImageStyledTestimonial src={testimonialImage}/>
-                        </span>
-
-                        <span>
-                            JOSH H.
-                            JULY 26, 2019
-                        </span>
-                    </DetailTestimonial>
-                </TestimonialContainer>
-
-                <TestimonialContainer>
-                    <TextTestimonial>
-                
-
-                            <p> 
-                                <ImageStyledIconPositive src={positiveIcon} />
-
-                                <span>
-                                    I arrived in Mai Niti as a volunteer, planning to stay not more than 3 weeks, helping out with some tasks at the center. 
-                                    But as soon as I arrived I realized it was such a special place and I felt like I needed to stay longer. 
-                                    The people there were so welcoming to me, the place is cozy and everything is set in a way so that everybody always stay together. 
-                                    I feel we were a family. Lucila, the shaman, is always attentive to the guests and spreading her care and high energy around. 
-                                    She is usually up to hear everybody's opinions about the events, the ceremony, the place, looking for improvements and mainly, checking how we all are feeling during the day. 
-                                    Finally, what I can say it impressed me most was definitely the energy of this place. It has some kind of mystery, which is really hard for me to explain, but I simply felt like there I was facing my truth and fears, there was no way out other than looking inside me. 
-                                    Thanks loads to Lucy, who received me openly and helped me in the way I needed, and also, to all of the guests, volunteers and workers I met there. 
-                                    All of them were undoubtedly unique in my experience and so grateful for it! Thank you!
-                                </span> 
-
-                                <ImageStyledFbIcon src={fbIcon} />                           
-                            </p>
-                        
-                    </TextTestimonial>
-
-                    <DetailTestimonial>
-                        <span>
-                            <ImageStyledTestimonial src={testimonialImage}/>
-                        </span>
-
-                        <span>
-                            JULIANA W.
-                            JULY 15, 2019
-                        </span>
-                    </DetailTestimonial>
-                </TestimonialContainer>
-
-
-                <TestimonialContainer>
-                    <TextTestimonial>
-                        <p> 
-
-                            <ImageStyledIconPositive src={positiveIcon} />
-
-                            <span>
-                                I went to the healing center for the 12 day retreat, finding out about it from a friend who had recommended it to me. 
-                                I was searching for a Ayahuasca center that was still authentic, as it is very difficult to find one in Peru that is not based off money and tourism. 
-                                I can truely say, Mai Niti was everything I could have hoped for, and more. If you are looking for a fully authentic, affordable, and personable retreat, 
-                                look no further. Lucia, Leonardo, their family, and their friends, take you in like you are part of the family instantly. This place becomes your home, 
-                                and you make friends that you will never forget here. Aside from the Ayahuasca ceremonies, they teach you about some of the thousands of other medicinal plants 
-                                used for healing, and teach you the ways of their culture. The Shipibo tribe is one of the pioneers of the Ayahuasca healing tradition and Shamanism, 
-                                and Leonardo is possibly one of the most experienced Shamans in Peru. You learn about the people and their culture, you learn about the plant knowledge 
-                                passed through the generations, and most importantly you learn about yourself. If you feel the call, Mai Niti will answer and you will come out a different person!
-                            </span>
-
-                            <ImageStyledFbIcon src={fbIcon} />  
-                        </p>
-                    </TextTestimonial>
-                    
-                    <DetailTestimonial>
-                        <span>
-                            <ImageStyledTestimonial src={testimonialImage}/>
-                        </span>
-
-                        <span>
-                            JOSH H.
-                            JULY 26, 2019
-                        </span>
-                    </DetailTestimonial>
-                </TestimonialContainer>
+                        </TestimonialContainer>
+                    )
+                })}
 
             </Carousel>
         </CarouselContainer>
@@ -300,13 +126,6 @@ export const YoutubeAutoplayWithCustomThumbs = () => {
     );
 };
 
-const TestimonialPage = ({ state, actions, libraries }) => {
-    return(
-
-            <YoutubeAutoplayWithCustomThumbs />
-
-    )
-}
 
 const CarouselContainer = styled.div`
     padding: 2rem;

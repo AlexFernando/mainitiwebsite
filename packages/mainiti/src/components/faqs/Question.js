@@ -18,11 +18,11 @@ const Question = ({question}) => {
           <header>
               <QuestionTitle onClick={() => setExpanded(!expanded)}>
                 <h4>{questionString}</h4>
-                <span>Getting <br></br>Here</span>
+                <span>Getting Here</span>
               </QuestionTitle>
 
               <ButtonQuestion onClick={() => setExpanded(!expanded)}>
-                {expanded ? <AiOutlineMinus /> : <AiOutlinePlus />}
+                {expanded ? <AiOutlineMinusStyled /> : <AiOutlinePlusStyled />}
               </ButtonQuestion>        
           </header>
           {expanded && <p>{answerString}</p>}
@@ -37,7 +37,7 @@ const Question = ({question}) => {
                 <span>Ayahuasca</span>
               </QuestionTitle>
               <ButtonQuestion onClick={() => setExpanded(!expanded)}>
-              {expanded ? <AiOutlineMinus /> : <AiOutlinePlus />}
+              {expanded ? <AiOutlineMinusStyled /> : <AiOutlinePlusStyled />}
               </ButtonQuestion>        
           </header>
           {expanded && <p>{answerString}</p>}
@@ -52,7 +52,7 @@ const Question = ({question}) => {
                 <span>Staying here</span>
               </QuestionTitle>
               <ButtonQuestion onClick={() => setExpanded(!expanded)}>
-              {expanded ? <AiOutlineMinus /> : <AiOutlinePlus />}
+              {expanded ? <AiOutlineMinusStyled /> : <AiOutlinePlusStyled />}
               </ButtonQuestion>        
           </header>
           {expanded && <p>{answerString}</p>}
@@ -67,7 +67,7 @@ const Question = ({question}) => {
                 <span>Prevention</span>
               </QuestionTitle>
               <ButtonQuestion onClick={() => setExpanded(!expanded)}>
-              {expanded ? <AiOutlineMinus /> : <AiOutlinePlus />}
+              {expanded ? <AiOutlineMinusStyled /> : <AiOutlinePlusStyled />}
               </ButtonQuestion>        
           </header>
           {expanded && <p>{answerString}</p>}
@@ -79,13 +79,14 @@ const Question = ({question}) => {
 
 const QuestionContainer = styled.article`
   padding: 1rem 1.5rem;
-  border: 2px solid #eae6eb;
-  border: 2px solid gray;
+  border-top: 2px solid #eae6eb;
+  /* border: 2px solid #eae6eb;
+  border: 2px solid gray; */
   margin-bottom: 1rem;
-  border-radius: .25rem;
+  /* border-radius: .25rem;
   border-radius: 1rem;
   box-shadow: 0 5px 15px rgb(0 0 0 / 10%);
-  box-shadow: lightgray;
+  box-shadow: lightgray; */
 
   h4 {
     text-transform: none;
@@ -94,27 +95,28 @@ const QuestionContainer = styled.article`
 
   p {
     color: var(--clr-grey-3);
-    margin-bottom: 0;
-    margin-top: 0.5rem;
+    font-size: 1.4rem;
   }
 
   header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-
-    h4 {
-        margin-bottom: 0;
-    }
   }
 `
 const QuestionTitle = styled.div`
     display: flex;
     align-items: center;
+    cursor: pointer;
+
+    @media (max-width: 768px) {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
 
     h4 {
-      cursor: pointer;
-      margin-top: 0;
+      font-size: 1.6rem;
     }
 
     span {
@@ -130,11 +132,10 @@ const QuestionTitle = styled.div`
 `
 
 const ButtonQuestion = styled.button`
-
     background: transparent;
     border-color: transparent;
-    width: 2rem;
-    height: 2rem;
+    width: 4rem;
+    height: 4rem;
     background: var(--clr-grey-special);
     display: flex;
     align-items: center;
@@ -148,5 +149,12 @@ const ButtonQuestion = styled.button`
 `;
 
 
+const AiOutlineMinusStyled = styled(AiOutlineMinus)`
+    font-size: 1.8rem;
+`
+
+const AiOutlinePlusStyled = styled(AiOutlinePlus)`
+    font-size: 1.8rem;
+`
 
 export default Question

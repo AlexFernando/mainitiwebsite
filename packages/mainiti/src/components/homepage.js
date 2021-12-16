@@ -16,7 +16,6 @@ import StylesCardHover from '../components/styles/cardHoverEffects.css';
 /**awesome words styles */
 import AwesomeWordStyles from './styles/wordsAwesone.css';
 
-
 import Loading from './Loading'
 
 const HomePage = ({ state, actions, libraries }) => {
@@ -95,7 +94,6 @@ const HomePage = ({ state, actions, libraries }) => {
                 <HomeServices>
                 {
                     Object.keys(pageHome.acf.why_mainiti.icons_paragraph).map( elem => {
-
                         
                         return(
                             <div>
@@ -107,7 +105,6 @@ const HomePage = ({ state, actions, libraries }) => {
                                     {pageHome.acf.why_mainiti.icons_paragraph[elem].paragraph}
                                 </p>
                             </div>  
-
                         )
                     })
                 }
@@ -216,10 +213,15 @@ const MainSection = styled.div`
     padding-left: 1rem;
 
     @media (min-width: 768px) {
+        margin-top: 10rem;
+        text-align: center;
+    }
+
+    @media (min-width:  1366px) {
         grid-template-columns: repeat(2, 1fr);
         grid-gap: 10rem;
-        padding-right: 22rem;
-        padding-left: 22rem;
+        padding-right: 20%;
+        padding-left: 20%;
         margin-top: 10rem;
         margin-bottom: 5rem;
         justify-items: center;
@@ -271,8 +273,8 @@ const HomeServicesContainer = styled.div`
         grid-template-columns: repeat(3, 1fr);
         padding-top: 4rem;
         padding-bottom:4rem;
-        padding-right: 20rem;
-        padding-left: 20rem;
+        padding-right: 10%;
+        padding-left: 10%;
     }
 
     @media (min-width: 992px) {
@@ -291,7 +293,7 @@ const HomeServicesContainer = styled.div`
         }
 
         h4 {
-            padding: 0 20rem;
+            padding: 0 20%;
             font-weight: 400;
             font-size: 1.2rem;
             line-height: 1.5;
@@ -343,7 +345,7 @@ const HomeServices = styled.div`
 
 const HomeCta = styled.div`
     
-    padding-top: 34px;
+    padding-top:34px;
     padding-bottom:34px;
     background:var(--brand);
     color:var(--white);
@@ -382,8 +384,8 @@ export const CardContainerMaestros = styled.div`
     @media (min-width: 768px) {
         padding-top: 4rem;
         padding-bottom:4rem;
-        padding-right: 20rem;
-        padding-left: 20rem;
+        padding-right: 15%;
+        padding-left: 15%;
     }
 
     @media (min-width: 992px) {
@@ -402,7 +404,7 @@ export const CardContainerMaestros = styled.div`
         }
 
         h4 {
-            padding: 0 20rem;
+            padding: 0 20%;
             font-weight: 400;
             font-size: 1.2rem;
             line-height: 1.5;
@@ -417,9 +419,9 @@ export const CardContainerMaestros = styled.div`
 export const CardMaestros = styled.div`
     display: grid;
     margin-top: 5rem;
+    grid-gap: 1rem;
 
-    @media (min-width: 768px) {
-        grid-gap: 1rem;
+    @media (min-width: 1366px) {
         grid-template-columns: repeat(2, 1fr);
     }
 
@@ -441,7 +443,7 @@ export const CardMaestros = styled.div`
             font-size: 1.25rem;
         }
         p {
-            padding: 0 3rem;
+            padding: 0 0rem;
             line-height: 1.5;
 
             @media (max-width: 768px) {

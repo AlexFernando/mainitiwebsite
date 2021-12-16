@@ -15,10 +15,10 @@ import * as customStyle from 'react-tabtab/lib/themes/bulma/index';
 import {RowOneContainer, BoxContainer} from './dieta';
 
 //import ayahuasca styles 
-import {MainParagraph, CardDescriptionContainer, ImageDescriptionContainer, MarginTemporalTab} from './Ayahuasca';
+import {CardDescriptionContainer, ImageDescriptionContainer, MarginTemporalTab} from './Ayahuasca';
 
 // import about styles
-import {MarginPaddingContainer, HeaderContainer, Title, Separator} from './About';
+import {MarginPaddingContainer, HeaderContainer, Title, Separator, MainParagraph} from './About';
 
 
 const Preparation = ({ state, actions, libraries }) => {
@@ -345,8 +345,9 @@ const FoodItems = styled.div`
 
 const AllowedForbbidenContainer = styled.div`
     
-    padding: 2rem 20rem;
+    padding: 4%;
     color:#565656;
+    text-align: justify;
 
     @media (max-width: 768px){
         padding: 1rem;

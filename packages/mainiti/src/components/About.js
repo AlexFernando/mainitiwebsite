@@ -59,7 +59,12 @@ const About = ({ state, actions, libraries }) => {
                 <Separator></Separator>
             </HeaderContainer>
 
-            <CardProduct>
+            <MainParagraph>
+                <p>{pageAbout.acf.line_text}
+                {pageAbout.acf.paragraph_text}</p>
+            </MainParagraph>
+
+            {/* <CardProduct>
                 <ProductDetails>
                     <h1>Our Center</h1>
                     <SeparatorCard></SeparatorCard>
@@ -87,7 +92,7 @@ const About = ({ state, actions, libraries }) => {
                         })
                     }
                 </ProductDetails>
-            </CardProduct>
+            </CardProduct> */}
 
             <>
                 <Global styles={StylesCardDetails} />
@@ -100,11 +105,9 @@ const About = ({ state, actions, libraries }) => {
                             <div className="front" css={css`background-image: url(${pageAbout.acf.accomodation_section.image_ref.sizes.large});`} >
                                 <div className="inner">
                                     <h2>Accomodation</h2>
-                                    <div className="rating">
-                                        <FontAwesomeIcon icon={faHome}/>
-                                        <FontAwesomeIcon icon={faHome}/>
-                                        <FontAwesomeIcon icon={faHome}/>
-                                    </div>
+                                    <p className="subtitle">
+                                        This is a subtitle for accomodation, complete with some text later
+                                    </p>
                                     <label for="card1" class="button" aria-hidden="true">
                                         Details
                                     </label>
@@ -130,11 +133,9 @@ const About = ({ state, actions, libraries }) => {
                             <div className="front" css={css`background-image: url(${pageAbout.acf.meals_section.image_ref.sizes.large});`} >
                                 <div className="inner">
                                     <h2>Meals</h2>
-                                    <div className="rating">
-                                        <FontAwesomeIcon icon={faAppleAlt}/>
-                                        <FontAwesomeIcon icon={faCarrot}/>
-                                        <FontAwesomeIcon icon={faFish}/>
-                                    </div>
+                                    <p className="subtitle">
+                                        This is a subtitle for Meals, complete with some text later
+                                    </p>
                                     <label for="card2" class="button" aria-hidden="true">
                                         Details
                                     </label>
@@ -160,11 +161,9 @@ const About = ({ state, actions, libraries }) => {
                             <div className="front" css={css`background-image: url(${pageAbout.acf.volunteering_section.image_ref.sizes.large});`} >
                                 <div className="inner">
                                     <h2>Volunteering</h2>
-                                    <div className="rating">
-                                        <FontAwesomeIcon icon={faHandsHelping}/>
-                                        <FontAwesomeIcon icon={faHandsHelping}/>
-                                        <FontAwesomeIcon icon={faHandsHelping}/>
-                                    </div>
+                                    <p className="subtitle">
+                                        This is a subtitle for Volunteering, complete with some text later
+                                    </p>
                                     <label for="card3" class="button" aria-hidden="true">
                                         Details
                                     </label>
@@ -198,14 +197,37 @@ const About = ({ state, actions, libraries }) => {
                     <h1>WARNING!</h1>
                     {pageAbout.acf.warning_note.split("%").map( elem => {
                         return(
-                            <h4>{elem.trim()}</h4>
+                            <p>{elem.trim()}</p>
                         )
                     })}
 
                 </WarningCard>
 
-            <div css={css`background-color: #F8F8FA;`}>
-            <CardDescriptionContainer>
+            <ContainerCardImagesFrontText>
+                <ContainerImage>
+                    <ImageTextFront src={pageAbout.acf.presentation_group.inside_maloka.sizes.large}/>
+
+                    <FrontImageTextCenter>
+                        <h3>The Maloka</h3>
+                        <p>{pageAbout.acf.presentation_group.maloka_text}</p>
+                    </FrontImageTextCenter>
+                </ContainerImage>
+
+                <ContainerImage>
+
+                    <FrontImageTextCenter>
+                        <h3>Community House</h3>
+                        {pageAbout.acf.presentation_group.community_house_text.split("%").slice(1,2).map( elem => {
+                            return(
+                                <p>{elem.trim()}</p>
+                            )
+                        })}
+                    </FrontImageTextCenter>
+
+                    <ImageTextFront src={pageAbout.acf.presentation_group.community_house_image_two.sizes.large}/>
+
+                </ContainerImage>
+            {/* <CardDescriptionContainer>
 
                 <ImageDescriptionContainer src={pageAbout.acf.presentation_group.inside_maloka.sizes.large} />
 
@@ -217,9 +239,9 @@ const About = ({ state, actions, libraries }) => {
                     }
                 </div>
 
-            </CardDescriptionContainer>
+            </CardDescriptionContainer> */}
             
-            <CardDescriptionContainer>
+            {/* <CardDescriptionContainer>
                 <div>
                     <h2>Community House</h2>
 
@@ -246,8 +268,8 @@ const About = ({ state, actions, libraries }) => {
 
                 <ImageDescriptionContainer src={pageAbout.acf.presentation_group.community_house_image_two.sizes.large} />
 
-            </CardDescriptionContainer>
-            </div>
+            </CardDescriptionContainer> */}
+            </ContainerCardImagesFrontText>
 
             <ContainerDirections>         
                 <CardDirections>
@@ -385,7 +407,7 @@ export const Title = styled.h2`
     font-weight: 400;
     line-height: 1;
     letter-spacing: 3px;
-    margin: 2rem 20rem;
+    margin: 2rem 15%;
     text-transform: uppercase;
     text-align: center;
  
@@ -416,20 +438,33 @@ export const Separator = styled.span`
     }
 `
 export const MarginPaddingContainer = styled.div`
-    margin: 10rem 2rem 2rem 2rem;
+    margin: 10% 8% 3% 8%;
 
     @media (max-width: 768px) {
-        margin: 4rem 0 1rem 0;
+        margin: 15% 0 3% 0;
     } 
 `
+export const MainParagraph = styled.div`
+    p {
+        margin: 3% 1%;
+        font-size: 1.2rem;
+        color: #3c3c3c;
+        line-height: 1.5;
+        text-align: justify;
 
+        @media (max-width: 768px) {
+            margin: 3%;
+            font-size: 1rem;
+        } 
+    }
+`
 export const CardProduct = styled.div`
     display: flex;
     justify-content: center;
 	text-align: center;
-    padding: 2rem 10rem;
+    padding: 2rem 6%;
 
-    @media (max-width: 768px) {
+    @media (max-width: 1024px) {
         flex-direction: column;
         align-items: center;
         height: 100%;
@@ -531,10 +566,11 @@ const WarningCard = styled.div`
     display: flex;
     flex-direction: column;
     border-radius: .5rem;
-    background-color: yellow;
-    padding: 5rem;
+    //background-color: yellow;
+    padding: 2%;
     text-align: center;
-    margin: 4rem 20rem;
+    margin: 5% 2%;
+    border: 1px solid #c1c1c1;
 
     @media (max-width: 768px) {
         margin: 0!important;
@@ -552,7 +588,7 @@ const WarningCard = styled.div`
         color: #000;
     }
 
-    h4 {
+    p {
         font-size: 1.2rem;
         color: #000;
         margin: .5rem;
@@ -562,17 +598,59 @@ const WarningCard = styled.div`
             padding: .5rem 2rem;
         }
     }
+`
+const ContainerCardImagesFrontText = styled.div`
+    display: flex;
+    justify-content: space-between;
 
+    @media (max-width: 1275px) {
+        flex-direction: column;
+        align-items: center;
+    }
 
+`
+
+const ContainerImage = styled.div`
+    position: relative;
+    text-align: center;
+    color: #000;
+`
+const ImageTextFront = styled(Image)`
+    max-width: 90%;
+    max-height: 90%;
+`
+
+// const FrontImageText = styled.div`
+//     position: absolute;
+//     top: 10px;
+//     left: 10px;
+//     font-size: 1.8rem;
+// `
+
+const FrontImageTextCenter = styled.div`
+    max-width: 30%;
+    max-height: 40%;
+    position: absolute;
+    top: 40%;
+    left: 15%;
+
+    font-size: 80%;
+
+    //new lines 
+    background-color: #f7f7f2;
+    background-position: center center;
+    border-color: transparent;
+    border-style: solid;
+    padding: 2%;
 `
 
 const ContainerDirections = styled.div`
     display: flex;
     justify-content: space-between;
     font-size: 1.5rem;
-    padding: 5rem;
+    padding: 2%;
 
-    @media(max-width: 768px) {
+    @media(max-width: 1768px) {
         flex-direction: column;
         justify-content: space-around;
         align-items: center;
@@ -585,8 +663,8 @@ const CardDirections = styled.div`
     border-radius: .4rem;
     box-shadow: 0 15px 30px 1px grey;
     background: rgba(255, 255, 255, 0.90);
-    padding: 3rem;
-    margin: 2rem;
+    padding: 3%;
+    margin: 2%;
     text-align: center;
 
     p {
@@ -594,7 +672,7 @@ const CardDirections = styled.div`
     }
 
 
-    @media(max-width: 768px) {
+    @media(max-width: 1768px) {
 
         padding: 1rem;
         margin: 1rem;

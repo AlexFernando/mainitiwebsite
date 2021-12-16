@@ -10,11 +10,11 @@ import { faSeedling, faRainbow, faCampground, faHeart} from '@fortawesome/free-s
 
 //import preparation and about styles
 import {AboutContainer, ButtonContainer, ButtonStyles, CardContainer, CardText} from './Preparation';
-import {MarginPaddingContainer, HeaderContainer, Title, Separator, CardAbout, ImageAboutStyles, CardProduct, ProductDetails, ProductImage, ImageProductCard, SeparatorCard} from './About';
+import {MarginPaddingContainer, HeaderContainer, Title, Separator, MainParagraph, CardAbout, ImageAboutStyles, CardProduct, ProductDetails, ProductImage, ImageProductCard, SeparatorCard} from './About';
 
 //import ayahuasca styles 
 
-import {MainParagraph, CardDescriptionContainer, ImageDescriptionContainer, MarginTemporalTab} from './Ayahuasca';
+import {CardDescriptionContainer, ImageDescriptionContainer, MarginTemporalTab} from './Ayahuasca';
 
 // react tab tab
 import {Tabs, TabList, Tab, PanelList, Panel} from 'react-tabtab';
@@ -259,15 +259,16 @@ const CardDietaContainer = styled.div`
 
 const DietaHelpContainer = styled.div`
 
-    padding: 2rem 20rem;
+    padding: 2% 4%;
 
     @media (max-width: 768px) {
-        padding: 1rem;
+        padding: 1%;
     } 
 
     div {
         display: flex;
         justify-content: space-between;
+        text-align: justify;
 
         @media (max-width: 768px) {
             flex-direction: column;
@@ -286,8 +287,9 @@ const DietaHelpContainer = styled.div`
 
     p {
         line-height: 1.5;
-        margin: 2rem 0;
+        margin: 2% 0;
         font-size: 1.3rem;
+        text-align: justify;
 
         @media (max-width: 768px) {
             font-size: 1rem;
@@ -307,6 +309,7 @@ const DietaHelpContainer = styled.div`
         list-style: none;
         line-height: 1.5;
         font-size: 1.2rem;
+        text-align: justify;
 
         @media (max-width: 768px) {
             font-size: 1rem;
@@ -338,11 +341,11 @@ export const FontAwesomeCheck = styled(FontAwesomeIcon)`
 
 export const FinalTextSection = styled.div`
 
-    margin: 4rem 20rem;
+    margin: 8% 4% 4% 4%;
     text-align: center;
 
     @media (max-width: 768px) {
-        margin: 4rem 1rem 1rem 1rem;
+        margin: 4% 1% 1% 1%;
     } 
 
     h2{
@@ -389,14 +392,16 @@ export const RowOneContainer = styled.div`
         grid-template-rows: repeat(2, 1fr);
         grid-template-columns: repeat(3, 1fr);
         justify-content: center;
-        grid-gap:2rem;
+        grid-gap:4%;
     }
 `
 export const BoxContainer = styled.div`
     border-radius: 5px;
     box-shadow: 0px 30px 40px -20px hsl(229, 6%, 66%);;
-    padding: 30px;
-    margin: 20px;  
+    padding: 10%;
+    margin: 6%;  
+    //new line
+    text-align: justify;
 
     img {
         float: right;

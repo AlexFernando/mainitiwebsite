@@ -9,7 +9,7 @@ import { faDotCircle, faMapMarkerAlt, faCheck, faTimes, faHome, faArrowLeft } fr
 import { faSeedling, faRainbow, faCampground, faHeart} from '@fortawesome/free-solid-svg-icons';
 
 //import about styles
-import {MarginPaddingContainer, HeaderContainer, Title, Separator, CardProduct, ProductDetails, ProductImage, ImageProductCard, SeparatorCard} from './About';
+import {MarginPaddingContainer, HeaderContainer, Title, Separator, MainParagraph, CardProduct, ProductDetails, ProductImage, ImageProductCard, SeparatorCard} from './About';
 
 // react tab tab
 import {Tabs, TabList, Tab, PanelList, Panel} from 'react-tabtab';
@@ -164,27 +164,14 @@ const Ayahuasca = ({ state, actions, libraries }) => {
     )
 }
 
-export const MainParagraph = styled.div`
-    p {
-        margin: 2rem 20rem;
-        font-size: 1.2rem;
-        color: #3c3c3c;
-        line-height: 1.5;
-
-        @media (max-width: 768px) {
-            margin: 2rem;
-            font-size: 1rem;
-        } 
-    }
-`
 
 /**Card DESCRIPTION */
 export const CardDescriptionContainer = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin: 3rem 5rem;
-    padding: 2rem 4rem;
+    margin: 3% 3%;
+    padding: 2% 2%;
 
     @media (max-width: 768px) {
         margin: 1rem;
@@ -193,16 +180,17 @@ export const CardDescriptionContainer = styled.div`
 
     div {
         flex-basis: 60%;
+        text-align: justify;
+        margin-left: 2%;
 
 
-        @media (max-width: 768px) {
+        @media (max-width: 1275px) {
             flex-basis: 100%;
         } 
 
         h2{
             font-size: 1.8rem;
             line-height: 1.2;
-            margin-right: 2rem;
 
             @media (max-width: 768px) {
                 font-size: 1.3rem;
@@ -218,20 +206,20 @@ export const CardDescriptionContainer = styled.div`
 	
 `
 export const ImageDescriptionContainer = styled(Image)`
-    max-width: 480px;
-    max-height: 580px;
+    max-width: 25vw;
+    max-height: 59vh;
 
-    @media (max-width: 768px) {
+    @media (max-width: 1275px) {
         display: none;
     } 
 	
 `
 
 export const MarginTemporalTab = styled.div`
-    margin-top: 5rem;
+    margin-top: 3%;
 
     @media (max-width: 768px) {
-        margin-top: 2rem;
+        margin-top: 10%;
     } 
 `
 

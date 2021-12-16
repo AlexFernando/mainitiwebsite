@@ -42,7 +42,6 @@ const Faqs = ({state, actions, libraries}) => {
                 </HeaderContainer>
                 <main>
                     <Container>
-                        <h3>Questions and Answers </h3>
                         <section>
                             {questions.map( (question ) => (
                                 <SingleQuestion question = {question} />
@@ -60,28 +59,18 @@ const Faqs = ({state, actions, libraries}) => {
 };
 
 const Container = styled.div`
-    width: 90vw;
-    margin: 5rem auto;
+    margin: 5% auto;
     background: var(--clr-white);
-    border-radius: var(--radius);
-    padding: 2.5rem 2rem;
-    max-width: var(--fixed-width);
+    padding: 3% 2%;
+    max-width: 90vw;
     display: grid;
-    gap: 1rem 2rem;
+    gap: 1% 2%;
 
     h3 {
-    line-height: 1.2;
-    font-weight: 500;
+        line-height: 1.2;
+        font-weight: 500;
     }
 
-    @media screen and (min-width: 992px) {
-        display: grid;
-        grid-template-columns: 250px 1fr;
-    }
-`
-
-const Info = styled.section`
-    
 `
 
 export default connect(Faqs);

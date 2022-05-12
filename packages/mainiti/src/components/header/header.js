@@ -11,7 +11,7 @@ const Header = ({ state }) => {
     <AllNavbar>
       <BrandContainer>
         <StyledLink link="/">
-          <Image src={Logo} />
+          <ImageLogo src="https://mainitiwp.wildfreewalkingtours.com/wp-content/uploads/2022/04/logo.png" />
         </StyledLink>
         <MobileMenu />
       </BrandContainer>
@@ -25,7 +25,6 @@ export default connect(Header);
 
 const AllNavbar = styled.div`
     
-
   @media (min-width: 768px) {
     position: fixed; /* Set the navbar to fixed position */
     top: 0; /* Position the navbar at the top of the page */
@@ -35,7 +34,7 @@ const AllNavbar = styled.div`
     justify-content: space-around;
     align-items: center;
     width: 100%;
-    height: 10vh;
+    height: 12vh;
 
     border-bottom: 1px solid #AEB6BF;
   }
@@ -67,3 +66,8 @@ const StyledLink = styled(Link)`
     color:var(--black);
   }
 `;
+
+const ImageLogo = styled(Image)`
+  max-width: 180px;
+  max-height: 240px;
+`

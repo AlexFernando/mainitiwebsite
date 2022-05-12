@@ -29,6 +29,8 @@ const Faqs = ({state, actions, libraries}) => {
     }
     
     const [questions, setQuestions] = useState(dataFaqsFinal);
+
+    let arrTitleGroupFaqs = ['Getting Here', 'Ayahuasca', 'Staying Here', 'Prevention']
     
     return(
 
@@ -43,8 +45,9 @@ const Faqs = ({state, actions, libraries}) => {
                 <main>
                     <Container>
                         <section>
-                            {questions.map( (question ) => (
-                                <SingleQuestion question = {question} />
+                            
+                            {questions.map( (question, index ) => (
+                                <SingleQuestion question = {question} titleGroup = {arrTitleGroupFaqs[index]}/>
                             ))}
                         </section> 
                     </Container>

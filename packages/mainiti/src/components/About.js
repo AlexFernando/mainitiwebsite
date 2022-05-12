@@ -22,6 +22,10 @@ import StylesCardDetails from '../components/styles/cardDetails.css'
 
 import {CardDescriptionContainer, ImageDescriptionContainer} from './Ayahuasca';
 
+// scroll effect example
+// You can live edit this code below the import statements
+import Fade from 'react-reveal/Fade';
+import Zoom from 'react-reveal/Zoom';
 
 const About = ({ state, actions, libraries }) => {
 
@@ -53,16 +57,18 @@ const About = ({ state, actions, libraries }) => {
         <>
         {typeof pageAbout === "undefined" ? <Loading /> : 
         <MarginPaddingContainer>
+            <Fade top duration={2100}>
+                <HeaderContainer>
+                    <Title>{pageAbout.acf.title_page}</Title>
+                    <Separator></Separator>
+                </HeaderContainer>
+          
 
-            <HeaderContainer>
-                <Title>{pageAbout.acf.title_page}</Title>
-                <Separator></Separator>
-            </HeaderContainer>
-
-            <MainParagraph>
-                <p>{pageAbout.acf.line_text}
-                {pageAbout.acf.paragraph_text}</p>
-            </MainParagraph>
+                <MainParagraph>
+                    <p>{pageAbout.acf.line_text}
+                    {pageAbout.acf.paragraph_text}</p>
+                </MainParagraph>
+            </Fade>
 
             {/* <CardProduct>
                 <ProductDetails>
@@ -98,101 +104,97 @@ const About = ({ state, actions, libraries }) => {
                 <Global styles={StylesCardDetails} />
 
                 <div className="wrapper">
-
-                    <div className="card">
-                        <input type="checkbox" id="card1" className="more" aria-hidden="true" />
-                        <div className="content">
-                            <div className="front" css={css`background-image: url(${pageAbout.acf.accomodation_section.image_ref.sizes.large});`} >
-                                <div className="inner">
-                                    <h2>Accomodation</h2>
-                                    <p className="subtitle">
-                                        This is a subtitle for accomodation, complete with some text later
-                                    </p>
-                                    <label for="card1" class="button" aria-hidden="true">
-                                        Details
-                                    </label>
-                                </div>
-                            </div>
-                            <div className="back">
-                                <div className="inner">
-                                    <div className="description">
-                                        <p>{pageAbout.acf.accomodation_section.paragraph}</p>
-                                        <p>{pageAbout.acf.accomodation_section.note_ref}</p>
+                    <Zoom top duration={2100}>
+                        <div className="card">
+                            <input type="checkbox" id="card1" className="more" aria-hidden="true" />
+                            <div className="content">
+                                <div className="front" css={css`background-image: url(${pageAbout.acf.accomodation_section.image_ref.sizes.large});`} >
+                                    <div className="inner">
+                                        <h2>Accomodation</h2>
+                                        <label for="card1" class="button" aria-hidden="true">
+                                            Details
+                                        </label>
                                     </div>
-                                    <label for="card1" className="button return" aria-hidden="true">
-                                        <FontAwesomeIcon icon={faArrowLeft}/>
-                                    </label>
+                                </div>
+                                <div className="back">
+                                    <div className="inner">
+                                        <div className="description">
+                                            <p>{pageAbout.acf.accomodation_section.paragraph}</p>
+                                            <p>{pageAbout.acf.accomodation_section.note_ref}</p>
+                                        </div>
+                                        <label for="card1" className="button return" aria-hidden="true">
+                                            <FontAwesomeIcon icon={faArrowLeft}/>
+                                        </label>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-
-                    <div className="card">
-                        <input type="checkbox" id="card2" className="more" aria-hidden="true" />
-                        <div className="content">
-                            <div className="front" css={css`background-image: url(${pageAbout.acf.meals_section.image_ref.sizes.large});`} >
-                                <div className="inner">
-                                    <h2>Meals</h2>
-                                    <p className="subtitle">
-                                        This is a subtitle for Meals, complete with some text later
-                                    </p>
-                                    <label for="card2" class="button" aria-hidden="true">
-                                        Details
-                                    </label>
-                                </div>
-                            </div>
-                            <div className="back">
-                                <div className="inner">
-                                    <div className="description">
-                                        <p>{pageAbout.acf.meals_section.paragraph}</p>
-                                        <p>{pageAbout.acf.meals_section.note_ref}</p>
+                  
+                        <div className="card">
+                            <input type="checkbox" id="card2" className="more" aria-hidden="true" />
+                            <div className="content">
+                                <div className="front" css={css`background-image: url(${pageAbout.acf.meals_section.image_ref.sizes.large});`} >
+                                    <div className="inner">
+                                        <h2>Meals</h2>
+                                        <label for="card2" class="button" aria-hidden="true">
+                                            Details
+                                        </label>
                                     </div>
-                                    <label for="card2" className="button return" aria-hidden="true">
-                                        <FontAwesomeIcon icon={faArrowLeft}/>
-                                    </label>
+                                </div>
+                                <div className="back">
+                                    <div className="inner">
+                                        <div className="description">
+                                            <p>{pageAbout.acf.meals_section.paragraph}</p>
+                                            <p>{pageAbout.acf.meals_section.note_ref}</p>
+                                        </div>
+                                        <label for="card2" className="button return" aria-hidden="true">
+                                            <FontAwesomeIcon icon={faArrowLeft}/>
+                                        </label>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    <div className="card">
-                        <input type="checkbox" id="card3" className="more" aria-hidden="true" />
-                        <div className="content">
-                            <div className="front" css={css`background-image: url(${pageAbout.acf.volunteering_section.image_ref.sizes.large});`} >
-                                <div className="inner">
-                                    <h2>Volunteering</h2>
-                                    <p className="subtitle">
-                                        This is a subtitle for Volunteering, complete with some text later
-                                    </p>
-                                    <label for="card3" class="button" aria-hidden="true">
-                                        Details
-                                    </label>
-                                </div>
-                            </div>
-                            <div className="back">
-                                <div className="inner">
-                                    <div className="description">
-                                        <p>{pageAbout.acf.volunteering_section.paragraph}</p>
-
-                                        {
-                                            pageAbout.acf.volunteering_section.list_task.split("%").map( elem => {
-                                                return(
-                                                    <li>{elem.trim()}</li>
-                                                )
-                                            })
-                                        }
-                                        <p>{pageAbout.acf.volunteering_section.note_ref}</p>
+                        <div className="card">
+                            <input type="checkbox" id="card3" className="more" aria-hidden="true" />
+                            <div className="content">
+                                <div className="front" css={css`background-image: url(${pageAbout.acf.volunteering_section.image_ref.sizes.large});`} >
+                                    <div className="inner">
+                                        <h2>Volunteering</h2>
+                                        {/* <p className="subtitle">
+                                            This is a subtitle for Volunteering, complete with some text later
+                                        </p> */}
+                                        <label for="card3" class="button" aria-hidden="true">
+                                            Details
+                                        </label>
                                     </div>
-                                    <label for="card3" className="button return" aria-hidden="true">
-                                        <FontAwesomeIcon icon={faArrowLeft}/>
-                                    </label>
+                                </div>
+                                <div className="back">
+                                    <div className="inner">
+                                        <div className="description">
+                                            <p>{pageAbout.acf.volunteering_section.paragraph}</p>
+
+                                            {
+                                                pageAbout.acf.volunteering_section.list_task.split("%").map( elem => {
+                                                    return(
+                                                        <li>{elem.trim()}</li>
+                                                    )
+                                                })
+                                            }
+                                            <p>{pageAbout.acf.volunteering_section.note_ref}</p>
+                                        </div>
+                                        <label for="card3" className="button return" aria-hidden="true">
+                                            <FontAwesomeIcon icon={faArrowLeft}/>
+                                        </label>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </Zoom>
                 </div>
             </>
             
+            <Fade top duration={2100}>
                 <WarningCard>
                     <h1>WARNING!</h1>
                     {pageAbout.acf.warning_note.split("%").map( elem => {
@@ -202,89 +204,56 @@ const About = ({ state, actions, libraries }) => {
                     })}
 
                 </WarningCard>
+            </Fade>
 
             <ContainerCardImagesFrontText>
-                <ContainerImage>
-                    <ImageTextFront src={pageAbout.acf.presentation_group.inside_maloka.sizes.large}/>
+                <Fade right duration={2100}>
+                    <ContainerImage>
+                        <ImageTextFront src={pageAbout.acf.presentation_group.inside_maloka.sizes.large}/>
 
-                    <FrontImageTextCenter>
-                        <h3>The Maloka</h3>
-                        <p>{pageAbout.acf.presentation_group.maloka_text}</p>
-                    </FrontImageTextCenter>
-                </ContainerImage>
+                        <FrontImageTextCenter>
+                            <h3>The Maloka</h3>
+                            <p>{pageAbout.acf.presentation_group.maloka_text}</p>
+                        </FrontImageTextCenter>
+                    </ContainerImage>
+                </Fade>
 
-                <ContainerImage>
+                <Fade left duration={2100}>
+                    <ContainerImage>
 
-                    <FrontImageTextCenter>
-                        <h3>Community House</h3>
-                        {pageAbout.acf.presentation_group.community_house_text.split("%").slice(1,2).map( elem => {
-                            return(
-                                <p>{elem.trim()}</p>
-                            )
-                        })}
-                    </FrontImageTextCenter>
+                        <ImageTextFront src={pageAbout.acf.presentation_group.community_house_image_two.sizes.large}/>
 
-                    <ImageTextFront src={pageAbout.acf.presentation_group.community_house_image_two.sizes.large}/>
-
-                </ContainerImage>
-            {/* <CardDescriptionContainer>
-
-                <ImageDescriptionContainer src={pageAbout.acf.presentation_group.inside_maloka.sizes.large} />
-
-                <div>
-                    <h2>The Maloka</h2>
-
-                    {
-                        <p>{pageAbout.acf.presentation_group.maloka_text}</p>
-                    }
-                </div>
-
-            </CardDescriptionContainer> */}
-            
-            {/* <CardDescriptionContainer>
-                <div>
-                    <h2>Community House</h2>
-
-                    {
-                        <p>
+                        <FrontImageTextCenter>
+                            <h3>Community House</h3>
                             {pageAbout.acf.presentation_group.community_house_text.split("%").slice(1,2).map( elem => {
                                 return(
                                     <p>{elem.trim()}</p>
                                 )
                             })}
-                        </p>
-                    }
+                        </FrontImageTextCenter>
 
-                    {
-                        <p>
-                            {pageAbout.acf.presentation_group.community_house_text.split("%").slice(2).map( elem => {
-                                return(
-                                    <p>{elem.trim()}</p>
-                                )
-                            })}
-                        </p> 
-                    }
-                </div>
-
-                <ImageDescriptionContainer src={pageAbout.acf.presentation_group.community_house_image_two.sizes.large} />
-
-            </CardDescriptionContainer> */}
+                    </ContainerImage>
+                </Fade>
             </ContainerCardImagesFrontText>
 
-            <ContainerDirections>         
-                <CardDirections>
-                    <div>
-                        <h2>How to find us</h2>
-                        <p>{pageAbout.acf.how_to_find_us.paragraph}</p>
-                        <p>{pageAbout.acf.how_to_find_us.note_ref}</p>
-                    </div>
-                </CardDirections>
+            <ContainerDirections>    
+                <Fade right duration={2100}>     
+                    <CardDirections>
+                        <div>
+                            <h2>How to find us</h2>
+                            <p>{pageAbout.acf.how_to_find_us.paragraph}</p>
+                            <p>{pageAbout.acf.how_to_find_us.note_ref}</p>
+                        </div>
+                    </CardDirections>
+                </Fade>
 
-                <CardDirections>
-                    <Content>
-                        <Html2React html={pageAbout.content.rendered} />
-                    </Content>
-                </CardDirections>
+                <Zoom top duration={2100}>
+                    <CardDirections>
+                        <Content>
+                            <Html2React html={pageAbout.content.rendered} />
+                        </Content>
+                    </CardDirections>
+                </Zoom>
             </ContainerDirections>
 
         </MarginPaddingContainer>
@@ -408,7 +377,7 @@ export const Title = styled.h2`
     line-height: 1;
     letter-spacing: 3px;
     margin: 2rem 15%;
-    text-transform: uppercase;
+    text-transform: capitalize;
     text-align: center;
  
     @media(min-width: 768px) {
@@ -599,25 +568,23 @@ const WarningCard = styled.div`
         }
     }
 `
-const ContainerCardImagesFrontText = styled.div`
-    display: flex;
-    justify-content: space-between;
+export const ContainerCardImagesFrontText = styled.div`
 
-    @media (max-width: 1275px) {
-        flex-direction: column;
-        align-items: center;
-    }
 
 `
 
-const ContainerImage = styled.div`
+export const ContainerImage = styled.div`
     position: relative;
     text-align: center;
     color: #000;
+
+    @media(max-width: 768px) {
+        position: unset;
+    }
 `
-const ImageTextFront = styled(Image)`
-    max-width: 90%;
-    max-height: 90%;
+export const ImageTextFront = styled(Image)`
+    max-width: 100%;
+    max-height: 100%;
 `
 
 // const FrontImageText = styled.div`
@@ -627,14 +594,14 @@ const ImageTextFront = styled(Image)`
 //     font-size: 1.8rem;
 // `
 
-const FrontImageTextCenter = styled.div`
-    max-width: 30%;
-    max-height: 40%;
+export const FrontImageTextCenter = styled.div`
+    max-width: 20%;
+    max-height: 50%;
     position: absolute;
-    top: 40%;
-    left: 15%;
+    top: 50%;
+    left: 25%;
 
-    font-size: 80%;
+    font-size: 1rem;
 
     //new lines 
     background-color: #f7f7f2;
@@ -642,6 +609,29 @@ const FrontImageTextCenter = styled.div`
     border-color: transparent;
     border-style: solid;
     padding: 2%;
+
+    @media(max-width: 1366px) {
+        max-width: 30%;
+        max-height: 40%;
+        top: 60%;
+        left: 10%;
+    }
+
+    @media(max-width: 1055px) {
+        max-width: 40%;
+        max-height: 40%;
+        top: 50%;
+        left: 10%;
+    }
+    
+    @media(max-width: 768px) {
+        position: unset;
+        max-width: 100%;
+        max-height: 100%;
+    }
+
+
+    
 `
 
 const ContainerDirections = styled.div`

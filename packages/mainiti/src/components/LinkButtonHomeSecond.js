@@ -2,8 +2,7 @@ import React from "react";
 import { connect, styled } from "frontity";
 
 const Anchor = styled.a`
-
-    color: white;
+    /* color: white; */
     line-height: inherit;
     cursor: pointer;
     text-align: center;
@@ -19,13 +18,15 @@ const Anchor = styled.a`
     text-decoration: none;
     overflow-wrap: break-word;
     border-radius: 5px;
-    background: transparent;
+    /* background: transparent; */
+    background-color: #fff;
     border-color: var(--brand);
     color: var(--brand);
     border: 1px solid transparent;
 
     &:hover {
-      color:var(--black);
+      color:#fff;
+      background-color: var(--brand);
     }
 `;
 

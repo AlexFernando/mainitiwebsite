@@ -9,14 +9,19 @@ import { faDotCircle, faMapMarkerAlt, faCheck, faTimes, faHome, faArrowLeft } fr
 import { faSeedling, faRainbow, faCampground, faHeart} from '@fortawesome/free-solid-svg-icons';
 
 //import about styles
-import {MarginPaddingContainer, HeaderContainer, Title, Separator, MainParagraph, CardProduct, ProductDetails, ProductImage, ImageProductCard, SeparatorCard} from './About';
+import {MarginPaddingContainer, HeaderContainer, Title, Separator, MainParagraph, ContainerCardImagesFrontText, ContainerImage, FrontImageTextCenter, ImageTextFront} from './About';
 
 // react tab tab
 import {Tabs, TabList, Tab, PanelList, Panel} from 'react-tabtab';
 import * as customStyle from 'react-tabtab/lib/themes/bulma/index';
 
 //styled card details
-import StylesCardDetails from '../components/styles/cardDetails.css'
+import StylesCardDetails from '../components/styles/cardDetails.css';
+
+// scroll effect example
+// You can live edit this code below the import statements
+import Fade from 'react-reveal/Fade';
+import Zoom from 'react-reveal/Zoom';
 
 const Ayahuasca = ({ state, actions, libraries }) => {
 
@@ -32,14 +37,18 @@ const Ayahuasca = ({ state, actions, libraries }) => {
         <>
         {typeof pageAyahuasca === "undefined" ? <Loading /> : 
         <MarginPaddingContainer>
-            <HeaderContainer>
-                <Title>{pageAyahuasca.acf.title_page}</Title>
-                <Separator></Separator>
-            </HeaderContainer>
+            <Fade right duration={2100}>
+                <HeaderContainer>
+                    <Title>{pageAyahuasca.acf.title_page}</Title>
+                    <Separator></Separator>
+                </HeaderContainer>
+            </Fade>
 
-            <MainParagraph>
-                <p>{pageAyahuasca.acf.paragraph_one}</p>
-            </MainParagraph>
+            <Fade left duration={2500}>
+                <MainParagraph>
+                    <p>{pageAyahuasca.acf.paragraph_one}</p>
+                </MainParagraph>
+            </Fade>
 
             <MarginTemporalTab />
             
@@ -52,66 +61,67 @@ const Ayahuasca = ({ state, actions, libraries }) => {
                 
                 <PanelList>
                     <Panel>
-                        <CardDescriptionContainer>
+                        <Fade right duration={2500}>
+                            <CardDescriptionContainer>
 
-                            <ImageDescriptionContainer src={pageAyahuasca.acf.image_description.sizes.large} />
+                                <ImageDescriptionContainer src={pageAyahuasca.acf.image_description.sizes.large} />
 
-                            <div>
-                                <h2>Deep Healing</h2>
+                                <div>
+                                    <h2>Deep Healing</h2>
 
-                                {
-                                    pageAyahuasca.acf.paragraph_two.split("%").map( elem => {
-                                        return(
-                                            <p>{elem.trim()}</p>
-                                        )
-                                    })
-                                }
-                            </div>
+                                    {
+                                        pageAyahuasca.acf.paragraph_two.split("%").map( elem => {
+                                            return(
+                                                <p>{elem.trim()}</p>
+                                            )
+                                        })
+                                    }
+                                </div> 
 
-                        </CardDescriptionContainer>
+                            </CardDescriptionContainer>
+                        </Fade>
                     </Panel>
 
                     <Panel>
                         
                         <Global styles={StylesCardDetails} />
 
-                        <div className="wrapper">
-                        {
-                        Object.keys(pageAyahuasca.acf.preparing_ayahuasca).map( (elem,index) => {
+                      
+                            <div className="wrapper">
+                            {
+                            Object.keys(pageAyahuasca.acf.preparing_ayahuasca).map( (elem,index) => {
 
-                            return(
-                                <div className="card">
-                                    <input type="checkbox" id={"card"+`${index+1}`} className="more" aria-hidden="true" />
-                                    <div className="content">
-                                        <div className="front" css={css`background-image: url(${pageAyahuasca.acf.preparing_ayahuasca[elem].image_card.sizes.large});`} >
-                                            <div className="inner">
-                                                <h2>{pageAyahuasca.acf.preparing_ayahuasca[elem].title}</h2>
-                                                <div className="rating">
-                                                    <FontAwesomeIcon icon={faHome}/>
-                                                    <FontAwesomeIcon icon={faHome}/>
-                                                    <FontAwesomeIcon icon={faHome}/>
+                                return(
+                                    <Zoom top duration={1500}>
+                                        <div className="card">
+                                            <input type="checkbox" id={"card"+`${index+1}`} className="more" aria-hidden="true" />
+                                            <div className="content">
+                                                <div className="front" css={css`background-image: url(${pageAyahuasca.acf.preparing_ayahuasca[elem].image_card.sizes.large});`} >
+                                                    <div className="inner">
+                                                        <h2>{pageAyahuasca.acf.preparing_ayahuasca[elem].title}</h2>
+                                                        <label for={"card"+`${index+1}`} class="button" aria-hidden="true">
+                                                            Details
+                                                        </label>
+                                                    </div>
                                                 </div>
-                                                <label for={"card"+`${index+1}`} class="button" aria-hidden="true">
-                                                    Details
-                                                </label>
+                                                <div className="back">
+                                                    <div className="inner">
+                                                        <div className="description">
+                                                            <p>{pageAyahuasca.acf.preparing_ayahuasca[elem].paragraph}</p>
+                                                        </div>
+                                                        <label for={"card"+`${index+1}`} className="button return" aria-hidden="true">
+                                                            <FontAwesomeIcon icon={faArrowLeft}/>
+                                                        </label>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
-                                        <div className="back">
-                                            <div className="inner">
-                                                <div className="description">
-                                                    <p>{pageAyahuasca.acf.preparing_ayahuasca[elem].paragraph}</p>
-                                                </div>
-                                                <label for={"card"+`${index+1}`} className="button return" aria-hidden="true">
-                                                    <FontAwesomeIcon icon={faArrowLeft}/>
-                                                </label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            )
-                        })
-                        }
-                        </div>
+                                    </Zoom>
+                                )
+                            })
+                            }
+                            </div>
+
                     </Panel>
 
                     <Panel>
@@ -123,34 +133,31 @@ const Ayahuasca = ({ state, actions, libraries }) => {
                         Object.keys(pageAyahuasca.acf.ayahuasca_ceremony).map( (elem,index) => {
 
                             return(
-                                <div className="card">
-                                    <input type="checkbox" id={"card"+`${index+1}`} className="more" aria-hidden="true" />
-                                    <div className="content">
-                                        <div className="front" css={css`background-image: url(${pageAyahuasca.acf.ayahuasca_ceremony[elem].image_card.sizes.large});`} >
-                                            <div className="inner">
-                                                <h2>{pageAyahuasca.acf.ayahuasca_ceremony[elem].title}</h2>
-                                                <div className="rating">
-                                                    <FontAwesomeIcon icon={faHome}/>
-                                                    <FontAwesomeIcon icon={faHome}/>
-                                                    <FontAwesomeIcon icon={faHome}/>
+                                <Zoom top duration={1500}>
+                                    <div className="card">
+                                        <input type="checkbox" id={"card"+`${index+1}`} className="more" aria-hidden="true" />
+                                        <div className="content">
+                                            <div className="front" css={css`background-image: url(${pageAyahuasca.acf.ayahuasca_ceremony[elem].image_card.sizes.large});`} >
+                                                <div className="inner">
+                                                    <h2>{pageAyahuasca.acf.ayahuasca_ceremony[elem].title}</h2>
+                                                    <label for={"card"+`${index+1}`} class="button" aria-hidden="true">
+                                                        Details
+                                                    </label>
                                                 </div>
-                                                <label for={"card"+`${index+1}`} class="button" aria-hidden="true">
-                                                    Details
-                                                </label>
                                             </div>
-                                        </div>
-                                        <div className="back">
-                                            <div className="inner">
-                                                <div className="description">
-                                                    <p>{pageAyahuasca.acf.ayahuasca_ceremony[elem].paragraph}</p>
+                                            <div className="back">
+                                                <div className="inner">
+                                                    <div className="description">
+                                                        <p>{pageAyahuasca.acf.ayahuasca_ceremony[elem].paragraph}</p>
+                                                    </div>
+                                                    <label for={"card"+`${index+1}`} className="button return" aria-hidden="true">
+                                                        <FontAwesomeIcon icon={faArrowLeft}/>
+                                                    </label>
                                                 </div>
-                                                <label for={"card"+`${index+1}`} className="button return" aria-hidden="true">
-                                                    <FontAwesomeIcon icon={faArrowLeft}/>
-                                                </label>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </Zoom>
                             )
                         })
                         }

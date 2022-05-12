@@ -17,6 +17,7 @@
   },
   "prettier": {},
   "dependencies": {
+    "@aamodtgroup/frontity-contact-form-7": "^0.2.10",
     "@fortawesome/fontawesome-svg-core": "^1.2.36",
     "@fortawesome/free-brands-svg-icons": "^5.15.4",
     "@fortawesome/free-regular-svg-icons": "^5.15.4",
@@ -31,8 +32,10 @@
     "frontity": "^1.17.0",
     "mainiti": "file:packages/mainiti",
     "react-icons": "^4.3.1",
+    "react-multi-carousel": "^2.8.0",
     "react-player": "^2.9.0",
     "react-responsive-carousel": "^3.2.22",
+    "react-reveal": "^1.2.2",
     "react-tabtab": "^2.0.0",
     "styled-components": "^4.4.1"
   }

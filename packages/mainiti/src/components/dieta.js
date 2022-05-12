@@ -26,6 +26,35 @@ import StylesCardDetails from '../components/styles/cardDetails.css';
 //styled four cards
 import StylesFourCards from '../components/styles/fourCards.css';
 
+/**CAROUSEL EVENTS */
+import Carousel from "react-multi-carousel";
+import multiCarouselStyles from  "react-multi-carousel/lib/styles.css";
+import generalStyles from '../styles/generalStyles.css';
+
+// scroll effect example
+// You can live edit this code below the import statements
+import Fade from 'react-reveal/Fade';
+import Zoom from 'react-reveal/Zoom';
+import Slide from 'react-reveal/Slide';
+
+const responsive = {
+    desktop: {
+      breakpoint: { max: 3000, min: 1024 },
+      items: 3,
+      paritialVisibilityGutter: 60
+    },
+    tablet: {
+      breakpoint: { max: 1024, min: 464 },
+      items: 2,
+      paritialVisibilityGutter: 50
+    },
+    mobile: {
+      breakpoint: { max: 464, min: 0 },
+      items: 1,
+      paritialVisibilityGutter: 30
+    }
+};
+
 
 const PlantDieta = ({ state, actions, libraries }) => {
 
@@ -53,14 +82,18 @@ const PlantDieta = ({ state, actions, libraries }) => {
         <>
         {typeof pagePlantDieta === "undefined" ? <Loading /> : 
         <MarginPaddingContainer>
-            <HeaderContainer>
-                <Title>{pagePlantDieta.acf.title_page}</Title>
-                <Separator></Separator>
-            </HeaderContainer>
+            <Fade right duration={2100}>
+                <HeaderContainer>
+                    <Title>{pagePlantDieta.acf.title_page}</Title>
+                    <Separator></Separator>
+                </HeaderContainer>
+            </Fade>
             
-            <MainParagraph>
-                <p>{pagePlantDieta.acf.paragraph}</p>
-            </MainParagraph>
+            <Fade left duration={2100}>
+                <MainParagraph>
+                    <p>{pagePlantDieta.acf.paragraph}</p>
+                </MainParagraph>
+            </Fade>
 
             <MasterPlantsContainer>
 
@@ -73,34 +106,32 @@ const PlantDieta = ({ state, actions, libraries }) => {
                         Object.keys(pagePlantDieta.acf.the_plants).map( (elem,index) => {
 
                             return(
-                                <div className="card">
-                                    <input type="checkbox" id={"card"+`${index+1}`} className="more" aria-hidden="true" />
-                                    <div className="content">
-                                        <div className="front" css={css`background-image: url(${pagePlantDieta.acf.the_plants[elem].image.sizes.large});`} >
-                                            <div className="inner">
-                                                <h2>{pagePlantDieta.acf.the_plants[elem].title}</h2>
-                                                <div className="rating">
-                                                    <FontAwesomeIcon icon={faHome}/>
-                                                    <FontAwesomeIcon icon={faHome}/>
-                                                    <FontAwesomeIcon icon={faHome}/>
+                                <Zoom top duration={1500}>
+                                    <div className="card">
+                                        <input type="checkbox" id={"card"+`${index+1}`} className="more" aria-hidden="true" />
+                                        <div className="content">
+                                            <div className="front" css={css`background-image: url(${pagePlantDieta.acf.the_plants[elem].image.sizes.large});`} >
+                                                <div className="inner">
+                                                    <h2>{pagePlantDieta.acf.the_plants[elem].title}</h2>
+                                
+                                                    <label for={"card"+`${index+1}`} class="button" aria-hidden="true">
+                                                        Details
+                                                    </label>
                                                 </div>
-                                                <label for={"card"+`${index+1}`} class="button" aria-hidden="true">
-                                                    Details
-                                                </label>
                                             </div>
-                                        </div>
-                                        <div className="back">
-                                            <div className="inner">
-                                                <div className="description">
-                                                    <p>{pagePlantDieta.acf.the_plants[elem].text}</p>
+                                            <div className="back">
+                                                <div className="inner">
+                                                    <div className="description">
+                                                        <p>{pagePlantDieta.acf.the_plants[elem].text}</p>
+                                                    </div>
+                                                    <label for={"card"+`${index+1}`} className="button return" aria-hidden="true">
+                                                        <FontAwesomeIcon icon={faArrowLeft}/>
+                                                    </label>
                                                 </div>
-                                                <label for={"card"+`${index+1}`} className="button return" aria-hidden="true">
-                                                    <FontAwesomeIcon icon={faArrowLeft}/>
-                                                </label>
                                             </div>
                                         </div>
                                     </div>
-                                </div>
+                                </Zoom>
                             )
                         })
                     }
@@ -119,115 +150,152 @@ const PlantDieta = ({ state, actions, libraries }) => {
                     
                     <PanelList>
                         <Panel>
+                        
+                                <CardDescriptionContainer>
 
-                            <CardDescriptionContainer>
+                                    <Fade left duration={1500}>
+                                        <ImageDescriptionContainer src={pagePlantDieta.acf.description.image.sizes.large} />
+                                    </Fade>
 
-                                <ImageDescriptionContainer src={pagePlantDieta.acf.description.image.sizes.large} />
-
-                                <div>
-                                    <h2>{ pagePlantDieta.acf.description.title}</h2>
-
-                                    {
-                                        pagePlantDieta.acf.description.paragraph.split("%").map( elem => {
-                                            return(
-                                                <p>{elem.trim()}</p>
-                                            )
-                                        })
-                                    }
-                                </div>
-                                
-                            </CardDescriptionContainer>
-                            
-                        </Panel>
-
-                        <Panel>
-                            <DietaHelpContainer>
-                      
-                                <h2>How Can a Dieta help me?</h2>
-                            
-                                <p><FontAwesomeCheck icon={faArrowAltCircleRight} /> {pagePlantDieta.acf.how_can.text_one}</p>
-
-                                <div>
-                                    <ul>
-                                        {
-                                            pagePlantDieta.acf.how_can.list_items.split("%").slice(0,4).map( elem => {
-                                                return(
-                                                    <li><FontAwesomeCheck icon={faCheck}/>{elem.trim()}</li>
-                                                )
-                                            })
-                                        }
-                                    </ul>
-
-                                    <ul>
-                                        {
-                                            pagePlantDieta.acf.how_can.list_items.split("%").slice(4,8).map( elem => {
-                                                return(
-                                                    <li><FontAwesomeCheck icon={faCheck}/>{elem.trim()}</li>
-                                                )
-                                            })
-                                        }
-                                    </ul>
-                                </div>
-
-                                <p><FontAwesomeCheck icon={faArrowAltCircleRight} /> {pagePlantDieta.acf.how_can.paragraph_one}</p>
-                           
-                            </DietaHelpContainer>
-                        </Panel>
-
-                        <Panel>
-                            <RowOneContainer>
-                                {Object.keys(pagePlantDieta.acf.how_does.cards).map( (item, index) => {
-                                    
-                                    return(
-                                        <BoxContainer>
-                                            <h2>{pagePlantDieta.acf.how_does.cards[item].header}</h2>
+                                    <Fade right duration={1500}>
+                                        <div>
+                                            <h2>{ pagePlantDieta.acf.description.title}</h2>
 
                                             {
-                                                pagePlantDieta.acf.how_does.cards[item].paragraph.split("%").map(elem => {
+                                                pagePlantDieta.acf.description.paragraph.split("%").map( elem => {
                                                     return(
-                                                        <p>{elem}</p>
+                                                        <p>{elem.trim()}</p>
                                                     )
                                                 })
                                             }
+                                        </div>
+                                    </Fade>
+                                </CardDescriptionContainer>
+                          
+                        </Panel>
 
-                                            <img src="https://assets.codepen.io/2301174/icon-supervisor.svg" alt="" />
-                                        </BoxContainer>
+                        <Panel>
+                            <Fade bottom duration={1500}>
+                                <DietaHelpContainer>
+                        
+                                    <h2>How Can a Dieta help me?</h2>
+                                
+                                    <p><FontAwesomeCheck icon={faArrowAltCircleRight} /> {pagePlantDieta.acf.how_can.text_one}</p>
+
+                                    <div>
+                                        <ul>
+                                            {
+                                                pagePlantDieta.acf.how_can.list_items.split("%").slice(0,4).map( elem => {
+                                                    return(
+                                                        <li><FontAwesomeCheck icon={faCheck}/>{elem.trim()}</li>
+                                                    )
+                                                })
+                                            }
+                                        </ul>
+
+                                        <ul>
+                                            {
+                                                pagePlantDieta.acf.how_can.list_items.split("%").slice(4,8).map( elem => {
+                                                    return(
+                                                        <li><FontAwesomeCheck icon={faCheck}/>{elem.trim()}</li>
+                                                    )
+                                                })
+                                            }
+                                        </ul>
+                                    </div>
+
+                                    <p><FontAwesomeCheck icon={faArrowAltCircleRight} /> {pagePlantDieta.acf.how_can.paragraph_one}</p>
+                            
+                                </DietaHelpContainer>
+                            </Fade>
+                        </Panel>
+
+                        <Panel>
+
+                    
+                            <GeneralBoxContainer>
+                                <Global styles={multiCarouselStyles} />
+                                <Global styles={generalStyles} />
+                            
+                                <Carousel
+                                    ssr
+                                    partialVisbile
+                                    itemClass="image-item"
+                                    responsive={responsive}
+                                >
+                            
+                                {Object.keys(pagePlantDieta.acf.how_does.cards).map( (item, index) => {
+                                    
+                                    return(
+                                        <Fade right duration={2000}>
+                                            <NewBoxContainer>
+                                                <h2>{pagePlantDieta.acf.how_does.cards[item].header}</h2>
+
+                                                {
+                                                    pagePlantDieta.acf.how_does.cards[item].paragraph.split("%").map(elem => {
+                                                        return(
+                                                            <p>{elem}</p>
+                                                        )
+                                                    })
+                                                }
+
+                                                {/* <img src="https://assets.codepen.io/2301174/icon-supervisor.svg" alt="" /> */}
+                                            </NewBoxContainer>
+                                        </Fade>
                                     )
                                 })}
-                            </RowOneContainer>
+                            
                          
+                                </Carousel>
+
+                                
+                            </GeneralBoxContainer>
+ 
                             <FinalTextSection>
-                                <h2>{'"'+ pagePlantDieta.acf.how_does.text_line + '"'}</h2>
+                                <Fade left duration={2000}>
+                                    <h2>{'"'+ pagePlantDieta.acf.how_does.text_line + '"'}</h2>
+                                    <SeparatorCardDieta></SeparatorCardDieta>
+                                </Fade>
 
-                                <SeparatorCardDieta></SeparatorCardDieta>
-
-                                <h3>Post Dieta</h3>
-
-                                <p><FontAwesomeCheck icon={faArrowAltCircleRight} /> {pagePlantDieta.acf.how_does.paragraph_post_dieta_one}</p>
-                                <p><FontAwesomeCheck icon={faArrowAltCircleRight} />{pagePlantDieta.acf.how_does.paragraph_post_dieta_two}</p>
+                                <Fade right duration={2000}>
+                                    <h3>Post Dieta</h3>
+                                    <p><FontAwesomeCheck icon={faArrowAltCircleRight} /> {pagePlantDieta.acf.how_does.paragraph_post_dieta_one}</p>
+                                    <p><FontAwesomeCheck icon={faArrowAltCircleRight} />{pagePlantDieta.acf.how_does.paragraph_post_dieta_two}</p>
+                                </Fade>
                             </FinalTextSection>
 
                         </Panel>
 
                         <Panel>
-                            <RowOneContainer>
+                            <GeneralBoxContainer>
+                                <Global styles={multiCarouselStyles} />
+                                <Global styles={generalStyles} />
+                                <Carousel
+                                    ssr
+                                    partialVisbile
+                                    itemClass="image-item"
+                                    responsive={responsive}
+                                >
                                 {Object.keys(pagePlantDieta.acf.types_of_dieta).map( (item, index) => {
                                     return(
-                                        <BoxContainer>
-                                            <h2>{pagePlantDieta.acf.types_of_dieta[item].header}</h2>
-                                            {
-                                                pagePlantDieta.acf.types_of_dieta[item].paragraph.split("%").map(elem => {
-                                                    return(
-                                                        <p>{elem}</p>
-                                                    )
-                                                })
-                                            }
+                                        <Fade right duration={1500}>
+                                            <NewBoxContainer>
+                                                <h2>{pagePlantDieta.acf.types_of_dieta[item].header}</h2>
+                                                {
+                                                    pagePlantDieta.acf.types_of_dieta[item].paragraph.split("%").map(elem => {
+                                                        return(
+                                                            <p>{elem}</p>
+                                                        )
+                                                    })
+                                                }
 
-                                            <img src="https://assets.codepen.io/2301174/icon-supervisor.svg" alt="" />
-                                        </BoxContainer>
+                                                {/* <img src="https://assets.codepen.io/2301174/icon-supervisor.svg" alt="" /> */}
+                                            </NewBoxContainer>
+                                        </Fade>
                                     )
                                 })}
-                            </RowOneContainer>
+                                 </Carousel>
+                            </GeneralBoxContainer>
                         </Panel>
                     </PanelList>
                 </Tabs>
@@ -454,5 +522,42 @@ export const BoxContainer = styled.div`
         }
     }
 `
+
+export const GeneralBoxContainer = styled.div`
+    margin-top: 2rem;
+`
+
+
+export const NewBoxContainer = styled.div`
+    box-shadow: 0 1px 12px 1px grey;
+    flex-basis: 100%;
+    flex-wrap: wrap;
+    margin: 1rem;
+    padding: 1rem;
+
+    @media (min-width: 768px){
+        flex-basis: 30%;
+        margin: 1rem;
+    }
+
+    :nth-of-type(1) {
+        border-top: 3px solid hsl(180, 62%, 55%);
+    }
+
+    :nth-of-type(2) {
+        border-top: 3px solid hsl(0, 78%, 62%);
+        
+    }
+
+    :nth-of-type(3) {
+        border-top: 3px solid hsl(212, 86%, 64%);
+        
+    }
+
+    :nth-of-type(4) {
+        border-top: 3px solid hsl(34, 97%, 64%);
+    }
+`
+
 
 export default connect(PlantDieta);

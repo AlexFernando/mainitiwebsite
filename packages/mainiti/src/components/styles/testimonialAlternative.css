@@ -55,6 +55,7 @@ Global Styles
   width: 90vw;
   margin: 5rem auto;
   max-width: var(--max-width);
+  text-align: center; /*new line for centering button*/
 }
 
 @media screen and (min-width: 992px) {
@@ -101,6 +102,11 @@ Slider
   position: relative;
   display: flex;
   overflow: hidden;
+
+  @media (max-width: 768px) {
+    height: 1000px;
+  }
+
 }
 .person-img {
   border-radius: 50%;
@@ -190,3 +196,4 @@ article.lastSlide {
 article.nextSlide {
   transform: translateX(100%);
 }
+

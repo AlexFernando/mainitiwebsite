@@ -12,13 +12,43 @@ import { faSeedling, faRainbow, faCampground, faHeart} from '@fortawesome/free-s
 import {Tabs, TabList, Tab, PanelList, Panel} from 'react-tabtab';
 import * as customStyle from 'react-tabtab/lib/themes/bulma/index';
 
-import {RowOneContainer, BoxContainer} from './dieta';
+import {GeneralBoxContainer, NewBoxContainer} from './dieta';
 
 //import ayahuasca styles 
 import {CardDescriptionContainer, ImageDescriptionContainer, MarginTemporalTab} from './Ayahuasca';
 
 // import about styles
 import {MarginPaddingContainer, HeaderContainer, Title, Separator, MainParagraph} from './About';
+
+/**CAROUSEL EVENTS */
+import Carousel from "react-multi-carousel";
+import multiCarouselStyles from  "react-multi-carousel/lib/styles.css";
+import generalStyles from '../styles/generalStyles.css';
+
+// scroll effect example
+// You can live edit this code below the import statements
+import Fade from 'react-reveal/Fade';
+import Zoom from 'react-reveal/Zoom';
+import Slide from 'react-reveal/Slide';
+
+const responsive = {
+    desktop: {
+      breakpoint: { max: 3000, min: 1024 },
+      items: 3,
+      paritialVisibilityGutter: 60
+    },
+    tablet: {
+      breakpoint: { max: 1024, min: 464 },
+      items: 2,
+      paritialVisibilityGutter: 50
+    },
+    mobile: {
+      breakpoint: { max: 464, min: 0 },
+      items: 1,
+      paritialVisibilityGutter: 30
+    }
+};
+
 
 
 const Preparation = ({ state, actions, libraries }) => {
@@ -55,51 +85,23 @@ const Preparation = ({ state, actions, libraries }) => {
         <MarginPaddingContainer>
                 
                 <HeaderContainer>
-                    <Title>Preparation</Title>
-                    <Separator></Separator>
+                    <Slide top duration={1500}>
+                        <Title>Preparation</Title>
+                        <Separator></Separator>
+                    </Slide>
                 </HeaderContainer>
 
                 <MarginTemporalTab />
 
-                <Tabs customStyle={customStyle}>
-                    <TabList>
-                        <Tab>Food</Tab>
-                        <Tab>Substances</Tab>
-                        <Tab>Activities</Tab>
-                        <Tab>What to expect at the center?</Tab>
-                    </TabList>
-                    
-                    <PanelList>
-                        <Panel>
-                            <RowOneContainer>
-                                {Object.keys(pagePreparation.acf.food_related.cards).map( (item, index) => {
-                                    return(
-                                        <BoxContainer>
-                                            <h2>{pagePreparation.acf.food_related.cards[item].text}</h2>
-
-                                            {
-                                                pagePreparation.acf.food_related.cards[item].paragraph.split("%").map(elem => {
-                                                    return(
-                                                        <p>{elem}</p>
-                                                    )
-                                                })
-                                            }
-
-                                            <img src="https://assets.codepen.io/2301174/icon-supervisor.svg" alt="" />
-                                        </BoxContainer>
-                                    )
-                                })}
-                            </RowOneContainer>
-
-                            <AllowedForbbidenContainer>
-                                
-                                
-                                    <p>{pagePreparation.acf.important_note_food}</p>
-                                
-                                
-                                    <div>
-             
-                                        <ul>
+                <InfoWrap>
+                    <Slide left duration={2000}>
+                        <InfoItem>
+                            <AllowedForbbidenContainer>   
+                                <h2>Food</h2>
+                                <p>{pagePreparation.acf.important_note_food}</p>
+                            
+                                <div>
+                                    <ul>
                                         <h3>Forbbiden Food</h3>
                                         {
                                             pagePreparation.acf.forbidden_food.split(",").map( elem => {
@@ -109,52 +111,35 @@ const Preparation = ({ state, actions, libraries }) => {
                                                 )
                                             })
                                         }
-                                        </ul>
-
-                          
-                                        <ul>
+                                    </ul>
+                            
+                
+                                    <ul>
                                         <h3>Allowed Food</h3>
-                                            {
-                                                pagePreparation.acf.allowed_food.split(",").map( elem => {
-                                                    return(
-                                                        <li><FontAwesomeIconCheck icon={faCheck} />{elem.trim()}</li>
-                                                    )
-                                                })
-                                            }
-                                        </ul>
-                                    </div>
-                                
+                                        
+                                        {
+                                            pagePreparation.acf.allowed_food.split(",").map( elem => {
+                                                return(
+                                                    <li><FontAwesomeIconCheck icon={faCheck} />{elem.trim()}</li>
+                                                )
+                                            })
+                                        }
+                                    </ul>
+                                </div>
                             </AllowedForbbidenContainer>
-                        </Panel>
+                        </InfoItem>
+                    </Slide>
 
-                        <Panel>
-                            <RowOneContainer>
-                                {Object.keys(pagePreparation.acf.substances.cards).map( (item, index) => {
-                                    return(
-                                        <BoxContainer>
-                                            <h2>{pagePreparation.acf.substances.cards[item].text}</h2>
-
-                                            {
-                                                pagePreparation.acf.substances.cards[item].paragraph.split("%").map(elem => {
-                                                    return(
-                                                        <p>{elem}</p>
-                                                    )
-                                                })
-                                            }
-
-                                            <img src="https://assets.codepen.io/2301174/icon-supervisor.svg" alt="" />
-                                        </BoxContainer>
-                                    )
-                                })}
-                            </RowOneContainer>
-
-
+                    <Slide bottom duration={1500}>
+                        <InfoItem>
                             <AllowedForbbidenContainer>
+
+                                <h2>Substances</h2>
                                 
                                 <p>{pagePreparation.acf.important_note_substances}</p>
                             
                                 <div>
-                   
+                    
 
                                     <ul>
                                         <h3>Forbbiden Substances</h3>
@@ -169,57 +154,142 @@ const Preparation = ({ state, actions, libraries }) => {
                                     </ul>
                                 </div>
                             </AllowedForbbidenContainer>
+                        </InfoItem>
+                    </Slide>
+
+                    <Slide right duration={2000}>
+                        <InfoItem>
+                            <AllowedForbbidenContainer>
+                                    <h2>Activities</h2>
+                                    <p>{pagePreparation.acf.important_note_food}</p>
+                                    
+                                    <div>
+                
+                                        <ul>
+                                            <h3>Forbbiden Activities</h3>
+                                            {
+                                                pagePreparation.acf.forbidden_activities.split(",").map( elem => {
+                                                    return(
+                                                        <li><FontAwesomeIconTimes icon={faTimes} />{elem.trim()}</li>
+                                                    
+                                                    )
+                                                })
+                                            }
+                                        </ul>
+
                             
-                        </Panel>
+                                        <ul>
+                                            <h3>Allowed Activities</h3>
+                                            {
+                                                pagePreparation.acf.allowed_activities.split(",").map( elem => {
+                                                    return(
+                                                        <li><FontAwesomeIconCheck icon={faCheck} />{elem.trim()}</li>
+                                                    )
+                                                })
+                                            }
+                                        </ul>
 
-                        <Panel>
-                            <AllowedForbbidenContainer>
-                                
-                                <p>{pagePreparation.acf.important_note_food}</p>
-                                
-                                <div>
-            
-                                    <ul>
-                                        <h3>Forbbiden Activities</h3>
-                                        {
-                                            pagePreparation.acf.forbidden_activities.split(",").map( elem => {
-                                                return(
-                                                    <li><FontAwesomeIconTimes icon={faTimes} />{elem.trim()}</li>
-                                                
-                                                )
-                                            })
-                                        }
-                                    </ul>
-
-                        
-                                    <ul>
-                                        <h3>Allowed Food</h3>
-                                        {
-                                            pagePreparation.acf.allowed_activities.split(",").map( elem => {
-                                                return(
-                                                    <li><FontAwesomeIconCheck icon={faCheck} />{elem.trim()}</li>
-                                                )
-                                            })
-                                        }
-                                    </ul>
-
-                                </div>
-                                
+                                    </div>
+                                    
                             </AllowedForbbidenContainer>
+                        </InfoItem>
+                    </Slide>
+                </InfoWrap>
 
+                <Tabs customStyle={customStyle}>
+                    <TabList>
+                        <Tab>Food</Tab>
+                        <Tab>Substances</Tab>
+                        <Tab>What to expect at the center?</Tab>
+                    </TabList>
+                    
+                    <PanelList>
+                        <Panel>
+                            <GeneralBoxContainer>
+                                <Global styles={multiCarouselStyles} />
+                                <Global styles={generalStyles} />
+                                
+                                <Carousel
+                                    ssr
+                                    partialVisbile
+                                    itemClass="image-item"
+                                    responsive={responsive}
+                                >
+                                    {Object.keys(pagePreparation.acf.food_related.cards).map( (item, index) => {
+
+                                        return(
+                                            <Slide right duration={1500}>
+                                                <NewBoxContainer>
+                                                    <h2>{pagePreparation.acf.food_related.cards[item].text}</h2>
+
+                                                    {
+                                                        pagePreparation.acf.food_related.cards[item].paragraph.split("%").map(elem => {
+                                                            return(
+                                                                <p>{elem}</p>
+                                                            )
+                                                        })
+                                                    }
+
+                                                    {/* <img src="https://assets.codepen.io/2301174/icon-supervisor.svg" alt="" /> */}
+                                                </NewBoxContainer>
+                                            </Slide>
+                                        )
+                                    })}
+                              </Carousel>
+                            </GeneralBoxContainer>
+                        </Panel>
+
+                        <Panel>
+                            <GeneralBoxContainer>
+                                <Global styles={multiCarouselStyles} />
+                                <Global styles={generalStyles} />
+
+                                <Carousel
+                                    ssr
+                                    partialVisbile
+                                    itemClass="image-item"
+                                    responsive={responsive}
+                                >
+                                {Object.keys(pagePreparation.acf.substances.cards).map( (item, index) => {
+                                    return(
+                                        <Slide right duration={1500}>
+                                            <NewBoxContainer>
+                                                <h2>{pagePreparation.acf.substances.cards[item].text}</h2>
+
+                                                {
+                                                    pagePreparation.acf.substances.cards[item].paragraph.split("%").map(elem => {
+                                                        return(
+                                                            <p>{elem}</p>
+                                                        )
+                                                    })
+                                                }
+
+                                                {/* <img src="https://assets.codepen.io/2301174/icon-supervisor.svg" alt="" /> */}
+                                            </NewBoxContainer>
+                                        </Slide>
+                                    )
+                                })}
+                              </Carousel>
+                            </GeneralBoxContainer>
                         </Panel>
 
                         <Panel>
                             <AllowedForbbidenContainer>
-                                <ul>
-                                    {
-                                        pagePreparation.acf.what_to_expect.split("%").map( elem => {
-                                            return(
-                                                <li><p><FontAwesomeIconCheck icon={faCheck} />{elem.trim()}</p></li>
-                                            )
-                                        })
-                                    }
-                                </ul>
+                                <Slide right duration={1500}>
+                                    <h2>Important Information</h2>
+                                </Slide>
+                                
+                                <Slide left duration={2000}>
+                                    <ul>
+                                        {
+                                            pagePreparation.acf.what_to_expect.split("%").map( elem => {
+                                                return(
+                                                    <li><p><FontAwesomeIconCheck icon={faCheck} />{elem.trim()}</p></li>
+                                                )
+                                            })
+                                        }
+                                    </ul>
+                                </Slide>
                             </AllowedForbbidenContainer>
                         </Panel>
                     </PanelList>
@@ -411,5 +481,26 @@ const FontAwesomeIconTimes =  styled(FontAwesomeIcon)`
     color: red;
     margin-right: .5rem;
 `
+export const InfoWrap = styled.div`
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 1rem;
+    background-color: #fff;
+    color: #444;
+    margin: 2rem 0;
+
+    @media (max-width: 768px){
+        grid-template-columns: repeat(1, 1fr);
+    }
+`;
+
+export const InfoItem = styled.div`
+    margin: 1rem 1rem;
+    box-shadow: grey 0px 15px 30px 1px;
+    border-radius: .5rem;
+    padding: 3%;
+`;
+
+
 
 export default connect(Preparation);

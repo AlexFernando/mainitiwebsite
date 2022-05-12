@@ -60,7 +60,7 @@
     border-radius: 6px;
     backface-visibility: hidden;
     /*background: linear-gradient(40deg, rgba(67, 138, 243, 0.7), rgba(255, 242, 166, 0.7));*/
-    /* background : linear-gradient(to top, rgba(34,49,63, .5), rgba(34, 49, 63, .5)); */
+    /* background : linear-gradient(to top, rgba(34,49,63, .5), rgba(34, 49, 63, .1));  */
 }
 .front .inner {
     grid-template-rows: 5fr 1fr 1fr 2fr 1fr;
@@ -74,7 +74,17 @@
     color: #fff;
     font-weight: 700;
     text-shadow: 1px 1px 2px black, 0 0 1em black, 0 0 0.2em black;
+    border-bottom: 5px inset #f2f2f2;
+   
 }
+
+.front h2::after {
+    content: '';
+    flex: 1 1 auto; /* the first digint is 'flex-grow: 1', helps elemet to occupy all free space */ 
+    border-bottom: solid 1px #fff;
+    width: 1rem;
+}
+
 .front .rating {
     grid-row: 3;
     color: rgba(255, 255, 255, 0.8);
@@ -89,11 +99,12 @@
 
 .front .subtitle {
     color: #fff;
-    letter-spacing: 3px;
+    letter-spacing: 1px;
     font-weight: 700;
-    text-shadow: 1px 1px 2px black, 0 0 1em black, 0 0 0.2em black;
+    text-shadow: 2px 2px 2px #000; 
     grid-row: 3;
     text-align: center;
+    font-size: 1.2rem;
 }
 
 .back {

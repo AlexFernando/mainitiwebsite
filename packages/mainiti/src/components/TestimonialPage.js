@@ -11,11 +11,18 @@ import ReactPlayer from 'react-player';
 
 // import about styles
 import {MarginPaddingContainer, HeaderContainer, Title, Separator, MainParagraph} from './About';
+import carouselTestimonialStyles from '../styles/carouselTestimonials.css';
 
 //Images importing 
 import fbIcon from '../images/facebook_small_icon.png';
 import positiveIcon from '../images/positive-min.png';
 import testimonialImage from '../images/testimonial_img.jpg';
+
+// scroll effect example
+// You can live edit this code below the import statements
+import Fade from 'react-reveal/Fade';
+import Zoom from 'react-reveal/Zoom';
+import Slide from 'react-reveal/Slide';
 
 const YoutubeSlide = ({ url, isSelected }) => (
     <ReactPlayerStyles url={url} /> 
@@ -63,17 +70,22 @@ const TestimonialPage  = ({state, actions, libraries}) => {
         <MarginPaddingContainer>
                 
         <HeaderContainer>
-            <Title>{pageTestimonial.acf.testimonial_title}</Title>
-            <Separator></Separator>
+            <Slide left duration={2500}>
+                <Title>{pageTestimonial.acf.testimonial_title}</Title>
+                <Separator></Separator>
+            </Slide>
         </HeaderContainer>
 
         <MainParagraph>
-            <p>{pageTestimonial.acf.subtitle_one}</p> 
-            <p>{pageTestimonial.acf.subtitle_two}</p>
+            <Slide right duration={2500}>
+                <p>{pageTestimonial.acf.subtitle_one}</p> 
+                <p>{pageTestimonial.acf.subtitle_two}</p>
+            </Slide>
         </MainParagraph>
 
         <CarouselContainer>
             <Global styles={CarouselAllStyles} />
+            <Global styles={carouselTestimonialStyles} />
 
             <Carousel renderItem={customRenderItem} renderThumbs={customRenderThumb} centerMode={true} showIndicators={false} centerSlidePercentage={myPercentage}>
                 {

@@ -24,8 +24,8 @@ const Anchor = styled.a`
     border-radius: 5px;
 
     &:hover {
-      color:var(--black);
-      background:transparent;
+      color:var(--brand);
+      background:white;
     }
 `;
 

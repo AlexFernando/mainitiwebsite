@@ -4,6 +4,7 @@ import { FiChevronRight, FiChevronLeft } from 'react-icons/fi';
 import People from './TestimonialAlternative';
 import data from './data';
 import TestimonialStyles from "../styles/testimonialAlternative.css";
+import LinkButtonTestimonial from './LinkButtonTestimonials'
 
 function App() {
 
@@ -49,8 +50,11 @@ function App() {
                     <FiChevronRight />
                 </button>
             </div>
+
+            <LinkButtonTestimonial href="/testimonials">More Testimonials</LinkButtonTestimonial>
         </section> 
 
+       
     </>
   );
 }

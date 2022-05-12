@@ -60,10 +60,10 @@ const Root = ({state, actions}) => {
                     }
 
          
-                    /* * {
+                 /* * {
                         border: 1px solid #f00 !important;
-                    }    */
-                    
+                    }    
+                     */
                 `}
             />
 
